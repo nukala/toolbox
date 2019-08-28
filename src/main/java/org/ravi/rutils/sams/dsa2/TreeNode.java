@@ -1,0 +1,57 @@
+package org.ravi.rutils.sams.dsa2;
+
+import java.util.Optional;
+
+// https://algorithmsandme.com/level-order-traversal-of-binary-tree/
+public class TreeNode<T> {
+    private T value;
+    private Optional<TreeNode<T>> left;
+    private Optional<TreeNode<T>> right;
+
+    public TreeNode(T value) {
+        this.value = value;
+        this.left = Optional.empty();
+        this.right = Optional.empty();
+    }
+
+    public T getValue() {
+        return this.value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    public TreeNode<T> getRight() {
+        return right.orElse(null);
+    }
+
+    public void setRight(TreeNode<T> node) {
+        this.right = Optional.of(node);
+    }
+
+    public void setRight(T value) {
+        this.right = Optional.of(new TreeNode<>(value));
+    }
+
+    public TreeNode<T> getLeft() {
+        return left.orElse(null);
+    }
+
+    public void setLeft(TreeNode<T> node) {
+        this.left = Optional.of(node);
+    }
+
+    public void setLeft(T value) {
+        this.left = Optional.of(new TreeNode<>(value));
+    }
+
+    public boolean hasLeft() {
+        return left.isPresent();
+    }
+
+    public boolean hasRight() {
+        return right.isPresent();
+    }
+}
+

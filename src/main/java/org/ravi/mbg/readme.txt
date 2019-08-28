@@ -1,0 +1,1 @@
+Package to help generate code for mybatis as shown at http://www.mybatis.org/generator/running/runningWithJava.html
