@@ -6,3 +6,5 @@ mvn archetype:generate -Dversion=1.0 -DarchetypeArtifactId=maven-archetype-quick
 Most of these are test(s) and code that I encountered and problems that got asked at Interviews or would like to ask my candidates. I tried to convert most of them into a valid-junit test that asserts something. There may be some violators remaining.
 
 Most of the code, I indicated the source of the code/algorithm/inspiration.
+
+WARNING: Parent-pom pulls down versions that have vulnerabilites. Use caution
