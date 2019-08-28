@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.ravi.udemy.dsa.WorthLooking;
 
 public class Strings {
     // https://www.udemy.com/master-the-coding-interview-data-structures-algorithms/learn/lecture/12308750#content
@@ -44,7 +45,8 @@ public class Strings {
     }
 
     // From "ABCD": A, AB, ABC, ABCD, B, BC, BCD, C, CD, D
-    // actually asked at Zume Inc
+    // actually asked in a video-interview
+     @WorthLooking("substrings from a big str")
     public static List<String> substrings(String input) {
         if ((input == null) || (input.length() == 0)) {
             return Lists.newArrayList(input);

@@ -2,20 +2,16 @@ package org.ravi.ivquiz;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import org.ravi.udemy.dsa.WorthLooking;
 
 import java.util.List;
 
 import static org.ravi.udemy.dsa.Strings.substrings;
 
-// asked at Zume Inc.
 public class StringsTest {
     // A, AB, ABC, ABCD, B, BC, BCD, C, CD, D
     @Test
-    @WorthLooking("substrings from a big str")
     public void substringsTest() {
         String input = "ABCD";
-
 
         List<String> list = substrings(input);
         list.stream()
