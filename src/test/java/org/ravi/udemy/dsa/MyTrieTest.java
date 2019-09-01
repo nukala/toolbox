@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.ravi.educative.TheTrie;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.ATOMIC_LONG;
 import static org.ravi.udemy.dsa.MyTrie.of;
 
 public class MyTrieTest {
@@ -18,12 +19,23 @@ public class MyTrieTest {
 
     @Test
     public void useOf() {
-        TheTrie trie = of("car was here where");
+        TheTrie trie = of("car was here     where");
 
         assertThat(trie.getNumChildren())
                 .isEqualTo(3);
+        assertThat(((MyTrie) trie).getChildren()[MyTrie.Alphabet.getIndex('w')].getNumChildren())
+                .isEqualTo(2);
     }
 
+    @Test
+    public void chainedAdd() {
+        TheTrie trie = new MyTrie();
+
+        trie.add("iron").add("spider").add(new String[]{"bat", "man"});
+        assertThat(trie.getNumChildren()).isEqualTo(4);
+        MyTrie iTree = ((MyTrie) trie).getChildren()[MyTrie.Alphabet.getIndex('i')];
+        assertThat(iTree.getNumChildren()).isEqualTo(1);
+    }
     @Test
     public void nodeTest() {
         TheTrie trie = of("park parker parked parking Peter");
@@ -63,5 +75,14 @@ public class MyTrieTest {
         assertThat(trie.contains("")).isFalse();
         assertThat(trie.isPrefix("peter")).isFalse();
         assertThat(trie.contains("pete")).isTrue();
+    }
+
+    @Test
+    public void toAndFromIndex() {
+        char ch = 'r';
+        int index = MyTrie.Alphabet.getIndex(ch);
+        assertThat(index).isEqualTo(17);
+        char got = MyTrie.Alphabet.fromIndex(index);
+        assertThat(got).isEqualTo('r');
     }
 }

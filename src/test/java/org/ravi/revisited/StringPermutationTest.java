@@ -1,4 +1,4 @@
-package org.ravi.udemy.dsa;
+package org.ravi.revisited;
 
 import org.junit.Test;
 
@@ -9,8 +9,9 @@ import java.util.function.Function;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.ravi.udemy.dsa.Strings.permutations;
 
+// Tests of code that was inspired from javarevisited.blogspot.com
 public class StringPermutationTest {
-    Function<String, List<String>> permuter = input -> {
+    private static Function<String, List<String>> permuter = input -> {
         List<String> list = permutations(input);
 
         StringJoiner joiner = new StringJoiner(", ");
