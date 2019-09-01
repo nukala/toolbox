@@ -45,9 +45,9 @@ public class MyDoublyLinkedList<T> implements TheLinkedList<T> {
 
     @Override
     public String display() {
-        return ">> " + displayHelper(head, " >> ", curr -> curr.getNext())
+        return ">> " + displayHelper(head, " >> ", DblNode::getNext)
                 + System.lineSeparator()
-                + displayHelper(tail, " << ", curr -> curr.getPrev()) + " <<";
+                + displayHelper(tail, " << ", DblNode::getPrev) + " <<";
     }
 
     @Override
@@ -62,7 +62,7 @@ public class MyDoublyLinkedList<T> implements TheLinkedList<T> {
 
     @Override
     public void prepend(T value) { // 240
-        DblNode<T> newNode = new DblNode(value);
+        DblNode<T> newNode = new DblNode<>(value);
 
         newNode.setNext(head);
         head.setPrev(newNode);

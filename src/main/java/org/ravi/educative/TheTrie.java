@@ -1,7 +1,7 @@
 package org.ravi.educative;
 
 public interface TheTrie {
-    void add(String word);
+    TheTrie add(String word);
 
     boolean contains(String word);
 
@@ -24,7 +24,7 @@ public interface TheTrie {
      */
     boolean isPrefix(String word);
 
-    void add(String[] words);
+    TheTrie add(String[] words);
 
     boolean hasChildren();
 

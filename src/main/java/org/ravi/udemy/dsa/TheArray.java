@@ -6,7 +6,7 @@ public interface TheArray<T> {
 
     int getLength();
 
-    TheArray push(T obj);
+    TheArray<T> push(T obj);
 
     T pop();
 

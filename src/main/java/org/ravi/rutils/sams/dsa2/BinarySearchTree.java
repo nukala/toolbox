@@ -5,6 +5,8 @@ import org.ravi.udemy.dsa.WorthLooking;
 import java.util.function.Consumer;
 
 // https://algorithmsandme.com/level-order-traversal-of-binary-tree/
+// TODO: I have serious problems with the way @see #insert is written up. Not sure if there is any code-coverage
+@SuppressWarnings({"unchecked", "WeakerAccess"}) // too many violators
 public class BinarySearchTree<T> {
     private TreeNode<T> root;
 
@@ -54,8 +56,9 @@ public class BinarySearchTree<T> {
         consumer.accept(node);
     }
 
+    // TODO: make sense of this
     public void insert(int value) {
-        this.root = insertNode(this.root, value);
+        insertNode(this.root, value);
     }
 
     private TreeNode insertNode(TreeNode root, int value) {
@@ -102,7 +105,7 @@ public class BinarySearchTree<T> {
 
     // TODO: Convert into a unit-test
     public static class App {
-        public static void main(String args[]) {
+        public static void main(String[] args) {
             BinarySearchTree<Integer> bst = new BinarySearchTree<>();
 
             bst.insert(10);
@@ -113,16 +116,16 @@ public class BinarySearchTree<T> {
             bst.insert(12);
             bst.insert(15);
 
-            System.out.printf("IN-ORDER: ");
-            bst.inOrder(bst.getRoot(), n -> System.out.printf("%s ", n.getValue()));
+            System.out.print("IN-ORDER: ");
+            inOrder(bst.getRoot(), n -> System.out.printf("%s ", n.getValue()));
             System.out.printf("%n");
 
-            System.out.printf("PRE-ORDER: ");
-            bst.preOrder(bst.getRoot(), n -> System.out.printf("%s ", n.getValue()));
+            System.out.print("PRE-ORDER: ");
+            preOrder(bst.getRoot(), n -> System.out.printf("%s ", n.getValue()));
             System.out.printf("%n");
 
-            System.out.printf("POST-ORDER: ");
-            bst.postOrder(bst.getRoot(), n -> System.out.printf("%s ", n.getValue()));
+            System.out.print("POST-ORDER: ");
+            postOrder(bst.getRoot(), n -> System.out.printf("%s ", n.getValue()));
             System.out.printf("%n");
 
             System.out.printf("Height=%d %n", bst.height());

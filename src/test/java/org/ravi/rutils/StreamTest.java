@@ -34,14 +34,11 @@ public class StreamTest {
 
     @Test
     public void sizeTest() {
-        int sum = Arrays.asList("abc1", "qqq", "lkj4", "qwrt7", "def2", "ghi3").stream()
+        int sum = Stream.of("abc1", "qqq", "lkj4", "qwrt7", "def2", "ghi3")
                 .skip(1)
                 .map(s -> StringUtils.substring(s, 0, 3))
                 .sorted()
-                .map(e -> {
-                    logger.info("{} ", e);
-                    return e;
-                })
+                .peek(e -> logger.info("{} ", e))
                 //.count();
                 .mapToInt(e -> 1)
                 .sum();
@@ -121,7 +118,7 @@ public class StreamTest {
                 .withMessageContaining("array cannot be null");
         assertThatNullPointerException()
                 .as("null stream")
-                .isThrownBy(() -> contains((Stream) null, "blah", StringUtils::startsWith))
+                .isThrownBy(() -> contains((Stream<String>) null, "blah", StringUtils::startsWith))
                 .withMessageContaining("stream cannot be null");
         assertThatNullPointerException()
                 .as("null predicate")
@@ -131,9 +128,8 @@ public class StreamTest {
 
     @Test
     public void usingBiPredicate() {
-        BiPredicate<String, String> startsWith = (elem, check) ->
-                StringUtils.startsWith(elem, check);
-        assertThat(contains(array, "ravi", StringUtils::startsWith))
+        BiPredicate<String, String> startsWith = StringUtils::startsWith;
+        assertThat(contains(array, "ravi", startsWith))
                 .isTrue();
         assertThat(contains(array, "boo", startsWith))
                 .isFalse();
@@ -154,14 +150,16 @@ public class StreamTest {
     @Test
     public void fromArray() {
         // to remove dups from array and print them (see docs.oracle.com/javase/tutorial/collections/interfaces/set.html)
-        String ary[] = new String[]{"hello", "this", "is", "ravi", "this", "here", "is", "hello", "ravi", "is"};
+        String[] ary = new String[]{"hello", "this", "is", "ravi", "this", "here", "is", "hello", "ravi", "is"};
 
+        // Stream.forEach requires underlying stream to be not-modified
+        // List.forEach may change values of list but not the structure (mostly)
         Arrays.stream(ary)
                 .collect(Collectors.toCollection(LinkedHashSet::new))
-                .stream()
                 .forEach(e -> System.out.printf("%s %n", e));
     }
 
+    @SuppressWarnings({"unused"})
     private static class Product {
         final int count;
         final String name;

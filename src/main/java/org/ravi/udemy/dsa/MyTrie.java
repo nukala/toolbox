@@ -5,29 +5,38 @@ import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.ravi.educative.TheTrie;
 
+import java.util.StringJoiner;
+
+// inspired by: 
+//   https://www.toptal.com/java/the-trie-a-neglected-data-structure
+//   see also: https://medium.com/basecs/trying-to-understand-tries-3ec6bede0014
+// also see = https://medium.com/@amogh.avadhani/how-to-build-a-trie-tree-in-java-9d144aaa0d01
+//    (more efficient container for children)
 @Getter
 @Setter
 public class MyTrie implements TheTrie {
     private boolean completeWord;
     private int numChildren;
+    // TODO: use a wrapper class to abstract out this!
     private MyTrie[] children = new MyTrie[Alphabet.NUM_LETTERS];
-    private Character character;
 
     public static MyTrie of(String sentence) {
         MyTrie trie = new MyTrie();
-        trie.add(sentence.split("\\s"));
+        trie.add(sentence.split("\\s+"));
         return trie;
     }
 
-    public void add(String[] words) {
+    public TheTrie add(String[] words) {
         for (String word : words) {
             add(word);
         }
+        return this;
     }
 
-    public void add(String str) {
+    @WorthLooking("recursive add -- pay attention to target of recursion call child.add ...")
+    public TheTrie add(String str) {
         if (str.length() == 0) {
-            return;
+            return this;
         }
         char firstChar = str.charAt(0);
         int index = Alphabet.getIndex(firstChar);
@@ -39,7 +48,6 @@ public class MyTrie implements TheTrie {
         MyTrie child = children[index];
         if (child == null) {
             child = new MyTrie();
-            child.character = firstChar;
             children[index] = child;
             numChildren++;
         }
@@ -48,6 +56,7 @@ public class MyTrie implements TheTrie {
         }
 
         child.add(str.substring(1));
+        return this;
     }
 
     public boolean hasChildren() {
@@ -58,7 +67,8 @@ public class MyTrie implements TheTrie {
         return getSubTrie(str) != null;
     }
 
-    public MyTrie getSubTrie(String s) {
+    @WorthLooking("O(string-length) loop for getting subTrie")
+    public TheTrie getSubTrie(String s) {
         if (StringUtils.isEmpty(s)) {
             return null;
         }
@@ -76,19 +86,45 @@ public class MyTrie implements TheTrie {
     }
 
     public boolean isPrefix(String portion) {
-        MyTrie subTrie = getSubTrie(portion);
+        TheTrie subTrie = getSubTrie(portion);
         return subTrie != null
                 && subTrie.hasChildren();
     }
 
-    // properties of the alphabet
+    /* TODO: toString needs some thought
+    public String toString() {
+        StringJoiner joiner = new StringJoiner(", ");
+
+        if (numChildren > 0) {
+            for (int i = 0; i < Alphabet.NUM_LETTERS; i++) {
+                if (children[i] != null) {
+                    joiner.add(Alphabet.fromIndex(i) + "");
+                }
+            }
+        }
+        joiner.add("#" + numChildren);
+        return joiner.toString();
+    }
+     */
+
+    /**
+     * properties of the alphabet
+     * <br/>
+     * make changes here if we have more letters or different Locale (pay attention to getIndex)
+     */
     static class Alphabet {
         public static final int NUM_LETTERS = 26;
         private static final char FIRST_CHAR = 'a';
         public static final int FIRST_CHAR_NUM = Character.getNumericValue(FIRST_CHAR);
 
-        private static int getIndex(char ch) {
+        public static int getIndex(char ch) {
             return Character.getNumericValue(Character.toLowerCase(ch)) - FIRST_CHAR_NUM;
+        }
+        public static char fromIndex(int index) {
+            char fromDigit = Character.forDigit(index, Character.MAX_RADIX);
+            char ch = (char) (index + FIRST_CHAR);
+
+            return ch;
         }
     }
 }
