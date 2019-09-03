@@ -1,6 +1,6 @@
 package org.ravi.udemy.dsa;
 
-// https://www.udemy.com/master-the-coding-interview-data-structures-algorithms/learn/lecture/12371830
+// www.udemy.com/master-the-coding-interview-data-structures-algorithms/learn/lecture/12371830
 public interface TheGraph<T> {
     default void addVertex(T node) {
         throw new IllegalStateException(getClass().getSimpleName() + ": unimplemented");
@@ -23,6 +23,14 @@ public interface TheGraph<T> {
     }
 
     default int getNumVertices() {
+        throw new IllegalStateException(getClass().getSimpleName() + ": unimplemented");
+    }
+
+    /**
+     * Displays a vertex of the graph.
+     */
+    // see: www.tutorialspoint.com/data_structures_algorithms/graph_data_structure.htm
+    default void displayVertex() {
         throw new IllegalStateException(getClass().getSimpleName() + ": unimplemented");
     }
 }

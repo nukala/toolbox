@@ -38,6 +38,38 @@ public class MyTree<T extends Comparable<T>> implements TheSearchTree<T> {
         return root != null;
     }
 
+    private void recursiveBft(TheQueue<TreeNode<T>> queue, Consumer<T> consumer) {
+        if (queue.isEmpty()) {
+            return;
+        }
+
+        TreeNode<T> currentNode = queue.dequeue();
+        if (currentNode.hasLeft()) {
+            queue.enqueue(currentNode.getLeft());
+        }
+        if (currentNode.hasRight()) {
+            queue.enqueue(currentNode.getRight());
+        }
+
+        consumer.accept(currentNode.getValue());
+        recursiveBft(queue, consumer);
+    }
+
+    @Override
+    public TheSearchTree<T> insert(T value) {
+        return null;
+    }
+
+    @Override
+    public boolean lookup(T value) {
+        return false;
+    }
+
+    @Override
+    public boolean remove(T value) {
+        return false;
+    }
+
     @Override
     public int getSize() {
         return size;
@@ -86,23 +118,7 @@ public class MyTree<T extends Comparable<T>> implements TheSearchTree<T> {
         }
     }
 
-    private void recursiveBft(TheQueue<TreeNode<T>> queue, Consumer<T> consumer) {
-        if (queue.isEmpty()) {
-            return;
-        }
-
-        TreeNode<T> currentNode = queue.dequeue();
-        if (currentNode.hasLeft()) {
-            queue.enqueue(currentNode.getLeft());
-        }
-        if (currentNode.hasRight()) {
-            queue.enqueue(currentNode.getRight());
-        }
-
-        consumer.accept(currentNode.getValue());
-        recursiveBft(queue, consumer);
-    }
-
+    @Override
     public void breadthFirstRecursive(Consumer<T> consumer) {
         if ((root == null) || (consumer == null)) {
             return;
@@ -128,7 +144,7 @@ public class MyTree<T extends Comparable<T>> implements TheSearchTree<T> {
 
             if (currNode.hasLeft()) {
                 int result = currNode.getValue().compareTo(currNode.getLeft().getValue());
-                if (result <= 0) {
+                if (result <= 0) { // curr is lessThanOrEqual to left, not allowed
                     return false;
                 }
                 queue.enqueue(currNode.getLeft());
@@ -145,18 +161,10 @@ public class MyTree<T extends Comparable<T>> implements TheSearchTree<T> {
         return true;
     }
 
-    @Override
-    public TheSearchTree<T> insert(T value) {
-        return null;
-    }
-
-    @Override
-    public boolean lookup(T value) {
-        return false;
-    }
-
-    @Override
-    public boolean remove(T value) {
-        return false;
+    // https://www.youtube.com/watch?v=i_Q0v_Ct5lY
+    @WorthLooking("checkBSTRecursive: compare left-node should be min<-->root; right-node root<-->max")
+    @SuppressWarnings({"unused"})
+    private boolean checkBSTRecursive(TreeNode<T> node, T min, T max) {
+        throw new IllegalArgumentException(getClass().getSimpleName() + ": implement me!");
     }
 }
