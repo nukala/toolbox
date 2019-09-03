@@ -1,8 +1,8 @@
 package org.ravi.rutils;
 
 import com.google.common.base.Splitter;
-import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
