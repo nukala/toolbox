@@ -16,13 +16,15 @@ public class BinarySearchTree<T> {
 
     @WorthLooking("DFS: depth first search - left->root->right")
     public static <T> void inOrder(TreeNode<T> node, Consumer<TreeNode<T>> consumer) {
-        if ((node == null) || (consumer == null)) {
+        if (node == null) {
             return;
         }
         if (node.hasLeft()) {
             inOrder(node.getLeft(), consumer);
         }
-        consumer.accept(node);
+        if (consumer != null) {
+            consumer.accept(node);
+        }
         if (node.hasRight()) {
             inOrder(node.getRight(), consumer);
         }
@@ -30,10 +32,12 @@ public class BinarySearchTree<T> {
 
     @WorthLooking("DFS: depth first search - root->left->right")
     public static <T> void preOrder(TreeNode<T> node, Consumer<TreeNode<T>> consumer) {
-        if ((node == null) || (consumer == null)) {
+        if (node == null) {
             return;
         }
-        consumer.accept(node);
+        if (consumer != null) {
+            consumer.accept(node);
+        }
         if (node.hasLeft()) {
             preOrder(node.getLeft(), consumer);
         }
@@ -44,7 +48,7 @@ public class BinarySearchTree<T> {
 
     @WorthLooking("DFS: depth first search -  left->right->root")
     public static <T> void postOrder(TreeNode<T> node, Consumer<TreeNode<T>> consumer) {
-        if ((node == null) || (consumer == null)) {
+        if (node == null) {
             return;
         }
         if (node.hasLeft()) {
@@ -53,7 +57,9 @@ public class BinarySearchTree<T> {
         if (node.hasRight()) {
             postOrder(node.getRight(), consumer);
         }
-        consumer.accept(node);
+        if (consumer != null) {
+            consumer.accept(node);
+        }
     }
 
     // TODO: make sense of this
@@ -61,10 +67,10 @@ public class BinarySearchTree<T> {
         insertNode(this.root, value);
     }
 
-    private TreeNode insertNode(TreeNode root, int value) {
+    private TreeNode<T> insertNode(TreeNode root, int value) {
         if (root == null) {
             //if this node is root of tree
-            setRoot(new TreeNode<>(value));
+            setRoot(new TreeNode(value));
         } else {
             if ((int) root.getValue() > value) {
              /* If root is greater than value,
@@ -79,11 +85,11 @@ public class BinarySearchTree<T> {
         return root;
     }
 
-    public TreeNode getRoot() {
+    public TreeNode<T> getRoot() {
         return this.root;
     }
 
-    public void setRoot(TreeNode node) {
+    public void setRoot(TreeNode<T> node) {
         this.root = node;
     }
 
@@ -92,7 +98,7 @@ public class BinarySearchTree<T> {
         return height(this.getRoot());
     }
 
-    private int height(TreeNode currentNode) {
+    private int height(TreeNode<T> currentNode) {
         if (currentNode == null) {
             return 0;
         }

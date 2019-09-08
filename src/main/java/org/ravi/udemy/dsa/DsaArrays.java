@@ -173,7 +173,7 @@ public class DsaArrays {
     }
 
     @WorthLooking("efficient twoSum with a hashset")
-    static boolean hasPairWithSum(int numbers[], int sum) {
+    static boolean hasPairWithSum(int[] numbers, int sum) {
         Objects.requireNonNull(numbers, "null numbers");
         Set<Integer> othersSet = new HashSet<>();
 
