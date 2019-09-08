@@ -33,10 +33,13 @@ public class HrGraph<T> {
         return node;
     }
 
-    public boolean hasPathDFS(HrNode<T> source, HrNode<T> destination) {
+    public boolean hasPathDFS(HrNode<T> src, HrNode<T> dest) {
+        Objects.requireNonNull(src, "null source-vertex not allowed");
+        Objects.requireNonNull(dest, "null destination-vertex not allowed");
+
         // using a visited flag would require us to be able to clear all the visited flags when needed.
         HashSet<Integer> visited = new HashSet<>();
-        return hasPathDFS(source, destination, visited);
+        return hasPathDFS(src, dest, visited);
     }
 
     public boolean hasPathDFS(int sourceId, int destinationId) {
@@ -60,10 +63,36 @@ public class HrGraph<T> {
         return false;
     }
 
+    // www.techiedelight.com/depth-first-search/
     @WorthLooking("hasPathIterativeDFS: use a stack and push with decrementing-loop-of-edges")
-    private void hashPathIterativeDFS() {
-        // bottom of https://www.techiedelight.com/depth-first-search/
-        throw new IllegalStateException(getClass().getSimpleName() + ": implement me");
+    private boolean hashPathIterativeDFS(HrNode<T> src, HrNode<T> dest) {
+        Objects.requireNonNull(src, "null source-vertex not allowed");
+        Objects.requireNonNull(dest, "null destination-vertex not allowed");
+        Stack<HrNode<T>> stack = new Stack<>();
+        Set<Integer> visited = new HashSet<>();
+
+        stack.push(src);
+        while (!stack.isEmpty()) {
+            HrNode<T> node = stack.pop();
+
+            if (visited.contains(node.getId())) {
+                continue;
+            }
+
+            visited.add(node.getId());
+            if (dest.equals(node)) {
+                return true;
+            }
+
+            for (int i = node.adjacent.size() - 1; i >= 0; i--) {
+                HrNode<T> adj = node.adjacent.get(i);
+
+                if (!visited.contains(adj.getId())) {
+                    stack.push(adj);
+                }
+            }
+        }
+        return false;
     }
 
     public boolean hasPathBFS(int sourceId, int destinationId) {
@@ -71,6 +100,8 @@ public class HrGraph<T> {
     }
 
     public boolean hasPathBFS(HrNode<T> src, HrNode<T> dest) {
+        Objects.requireNonNull(src, "null source-vertex not allowed");
+        Objects.requireNonNull(dest, "null destination-vertex not allowed");
         // to track what to visit next
         Queue<HrNode<T>> queue = new LinkedList<>();
 
@@ -81,8 +112,7 @@ public class HrGraph<T> {
         while (!queue.isEmpty()) {
             HrNode<T> node = queue.remove();
 
-            if (node.equals(dest)) {
-                // we are done. Found a match!
+            if (node.equals(dest)) { // Found a match!
                 return true;
             }
 
@@ -93,6 +123,7 @@ public class HrGraph<T> {
 
             queue.addAll(node.adjacent);
         }
+
         return false;
     }
 
