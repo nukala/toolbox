@@ -6,6 +6,7 @@ import lombok.ToString;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -46,9 +47,10 @@ public class AccountBalanceTest {
 
         Map<String, Integer> balanceMap = mapOfBills(bills);
 
+        Predicate<String> hasBalance = (id) -> balanceMap.containsKey(id) && balanceMap.get(id) != 0;
+
         for (Account account : DataService.getAccounts()) {
-            if (balanceMap.containsKey(account.getId())
-                    && balanceMap.get(account.getId()) != 0) {
+            if (hasBalance.test(account.getId())) {
                 accountBalances.add(new AccountBalance(account.getId(), balanceMap.get(account.getId())));
             }
         }
