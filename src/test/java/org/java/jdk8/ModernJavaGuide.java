@@ -22,7 +22,7 @@ public class ModernJavaGuide {
         // causes compiler error num = 99;
     }
 
-    @Test //WorthLooking("timeMillisVsClock: initialization takes ~30ms")
+    @Test //@WorthLooking("timeMillisVsClock: initialization takes ~30ms")
     public void timeMillisVsClock() { // p16
         Clock systemClock = Clock.systemDefaultZone();
         Clock utcClock = Clock.systemUTC();
