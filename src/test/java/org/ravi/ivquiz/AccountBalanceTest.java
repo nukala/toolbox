@@ -1,8 +1,7 @@
 package org.ravi.ivquiz;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.junit.Test;
 
 import java.util.*;
@@ -42,7 +41,7 @@ public class AccountBalanceTest {
 //    }
 
     public static List<AccountBalance> getAccountBalances() {
-        List<AccountBalance> accountBalances = new ArrayList<AccountBalance>();
+        List<AccountBalance> accountBalances = new ArrayList<>();
         List<Bill> bills = DataService.getBills();
 
         Map<String, Integer> balanceMap = mapOfBills(bills);
@@ -55,26 +54,25 @@ public class AccountBalanceTest {
             }
         }
 
-
         return accountBalances;
     }
 
     public static List<Bill> getDueBills(String accountId) {
         // list all bills still due for an account
-        return Arrays.asList();
+        return Collections.emptyList();
     }
 
     @Test
     public void usingDataService() {
-//        for (Bill b : DataService.getBills()) {
-//            System.out.println(b);
-//        }
-//        for (Payment p : DataService.getPayments()) {
-//            System.out.println(p);
-//        }
-//        for (Account a : DataService.getAccounts()) {
-//            System.out.println(a);
-//        }
+        for (Bill b : DataService.getBills()) {
+            System.out.println(b);
+        }
+        for (Payment p : DataService.getPayments()) {
+            System.out.println(p);
+        }
+        for (Account a : DataService.getAccounts()) {
+            System.out.println(a);
+        }
 
         List<AccountBalance> balances = getAccountBalances();
         for (AccountBalance ab : balances) {
@@ -95,47 +93,32 @@ public class AccountBalanceTest {
         }
     }
 
-    @Getter
-    @EqualsAndHashCode
-    @ToString
+    @Data
     static class Account {
-        private String id;
+        private final String id;
 
         public Account(String id) {
             this.id = id;
         }
     }
 
-    @Getter
-    @EqualsAndHashCode
-    @ToString
+    @Data
+    @AllArgsConstructor
     static class Bill {
         private String id;
         private int amount;
         private String accountId;
-
-        public Bill(String id, int amount, String accountId) {
-            this.id = id;
-            this.amount = amount;
-            this.accountId = accountId;
-        }
     }
 
-    @Getter
-    @EqualsAndHashCode
-    @ToString
+    @Data
+    @AllArgsConstructor
     static class Payment {
         private String id;
         private int amount;
         private String accountId;
-
-        public Payment(String id, int amount, String accountId) {
-            this.id = id;
-            this.amount = amount;
-            this.accountId = accountId;
-        }
     }
 
+    @Data
     static class DataService {
         private static List<Bill> bills = Arrays.asList(
                 new Bill("1", 100, "100"),
@@ -169,16 +152,10 @@ public class AccountBalanceTest {
         }
     }
 
-    @Getter
-    @EqualsAndHashCode
-    @ToString
+    @Data
+    @AllArgsConstructor
     static class AccountBalance {
-        String accountId;
-        int balance;
-
-        public AccountBalance(String accountId, int balance) {
-            this.accountId = accountId;
-            this.balance = balance;
-        }
+        private String accountId;
+        private int balance;
     }
 }
