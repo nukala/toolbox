@@ -1,5 +1,8 @@
 package org.ravi.udemy.dsa;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 // inspired from the class
 // https://www.udemy.com/master-the-coding-interview-data-structures-algorithms/learn/lecture/12312672#overview
 //
@@ -27,6 +30,7 @@ public class MyHashMap implements TheHashMap {
 
     @Override
     public boolean containsKey(String key) {
+        // TODO how about collissions?
         return entries[hash(key)] != null;
     }
 
@@ -94,22 +98,11 @@ public class MyHashMap implements TheHashMap {
         return keys;
     }
 
+    @Getter
+    @AllArgsConstructor
     private static class KV {
         private String key;
         private Object value;
-
-        KV(String key, Object value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        public String getKey() {
-            return key;
-        }
-
-        public Object getValue() {
-            return this.value;
-        }
 
         public String toString() {
             return key + "=" + value;
