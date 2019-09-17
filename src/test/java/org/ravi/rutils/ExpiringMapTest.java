@@ -2,6 +2,7 @@ package org.ravi.rutils;
 
 import org.junit.After;
 import org.junit.Test;
+import org.ravi.udemy.dsa.WorthLooking;
 
 import java.time.Clock;
 
@@ -15,18 +16,19 @@ public class ExpiringMapTest {
 
     private ExpiringMap<Integer, String> expMap = new ExpiringHashMap<>();
 
-    private static void napMillis(int millis) {
+    @WorthLooking("broken for short durations")
+    private static void napMillis(int duration) {
         long then = System.currentTimeMillis();
         try {
-            Thread.sleep(millis);
+            Thread.sleep(duration);
         } catch (InterruptedException e) { // ignored
             ;
         }
         long now = System.currentTimeMillis();
-        int diff = (int) (now - then - millis);
-        if (diff > millis / 3) {
+        int diff = (int) (now - then - duration);
+        if (diff > duration / 3) {
             StackTraceElement caller = Thread.currentThread().getStackTrace()[2];
-            System.err.printf("%d: (%s::%d) napped too long(%d), may have to re-run tests%n", millis,
+            System.err.printf("%d: (%s::%d) napped too long(%d), may have to re-run tests%n", duration,
                     caller.getMethodName(), caller.getLineNumber(), diff);
         }
     }
