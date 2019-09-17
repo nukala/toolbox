@@ -3,9 +3,16 @@ package org.ravi.rutils;
 import org.junit.After;
 import org.junit.Test;
 
+import java.time.Clock;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ExpiringMapTest {
+    static {
+        Clock.systemDefaultZone();
+        //napMillis(15);
+    }
+
     private ExpiringMap<Integer, String> expMap = new ExpiringHashMap<>();
 
     private static void napMillis(int millis) {
@@ -16,9 +23,11 @@ public class ExpiringMapTest {
             ;
         }
         long now = System.currentTimeMillis();
-        long diff = now - then - millis;
-        if (diff > 1) {
-            System.err.printf("%d: napped too long? diff=%d %n", millis, diff);
+        int diff = (int) (now - then - millis);
+        if (diff > millis / 3) {
+            StackTraceElement caller = Thread.currentThread().getStackTrace()[2];
+            System.err.printf("%d: (%s::%d) napped too long(%d), may have to re-run tests%n", millis,
+                    caller.getMethodName(), caller.getLineNumber(), diff);
         }
     }
 
