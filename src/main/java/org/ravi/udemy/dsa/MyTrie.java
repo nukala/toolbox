@@ -33,7 +33,7 @@ public class MyTrie implements TheTrie {
         return this;
     }
 
-    @WorthLooking("recursive add -- pay attention to target of recursion call child.add ...")
+    @WorthLooking("recursive add -- pay attention to target of recursion use child.add ...")
     public TheTrie add(String str) {
         if (str.length() == 0) {
             return this;

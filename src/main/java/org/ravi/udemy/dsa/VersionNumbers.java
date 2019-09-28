@@ -26,9 +26,9 @@ public class VersionNumbers implements Comparator<String> {
 
         String[] leftElems = leftVersion.split("\\.");
         String[] rightElems = rightVersion.split("\\.");
-        int maxLen = Math.max(leftElems.length, rightElems.length), i = 0;
+        int maxElems = Math.max(leftElems.length, rightElems.length), i = 0;
 
-        while (i < maxLen) {
+        while (i < maxElems) {
             int leftNum = calculateVersion(leftElems, i);
             int rightNum = calculateVersion(rightElems, i);
 
@@ -43,5 +43,4 @@ public class VersionNumbers implements Comparator<String> {
 
         return 0;
     }
-
 }
