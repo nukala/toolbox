@@ -20,7 +20,7 @@ public class DsaArrays {
 
         // copied from Arrays.toArray
         if (sample.length < numItems) {
-            return java.util.Arrays.copyOf(array, numItems, (Class<? extends T[]>) sample.getClass());
+            return Arrays.copyOf(array, numItems, (Class<? extends T[]>) sample.getClass());
         }
 
         System.arraycopy(array, 0, sample, 0, numItems);
@@ -33,7 +33,7 @@ public class DsaArrays {
         Object[] objs = new Object[numItems];
         System.arraycopy(orig, start, objs, 0, numItems);
 
-        return java.util.Arrays.copyOf(objs, numItems, (Class<? extends T[]>) orig.getClass());
+        return Arrays.copyOf(objs, numItems, (Class<? extends T[]>) orig.getClass());
     }
 
     public static Integer[] randomInts(int numItems) {
@@ -44,15 +44,15 @@ public class DsaArrays {
     }
 
     // cannot genericize
-    public static String arrayToString(int array[]) {
+    public static String arrayToString(int[] array) {
         return arrayToString(array, Optional.empty());
     }
 
-    public static String arrayToString(int array[], Optional<Integer> lenOpt) {
+    public static String arrayToString(int[] array, Optional<Integer> lenOpt) {
         if ((array == null) || (array.length == 0)) {
             return "";
         }
-        int len = lenOpt.isPresent() ? lenOpt.get() : array.length;
+        int len = lenOpt.orElseGet(() -> array.length);
 
         StringJoiner joiner = new StringJoiner(",");
         for (int i = 0; i < len; i++) {
@@ -121,6 +121,7 @@ public class DsaArrays {
     // Section6
     // inspired by class solution
     @WorthLooking("merge two sorted arrays")
+    //TODO convert into Comparables
     static int[] mergeSortedArrays2(int left[], int right[]) {
         if ((left == null) && (right == null)) {
             return null;
@@ -172,7 +173,7 @@ public class DsaArrays {
         return j + 1;
     }
 
-    @WorthLooking("efficient twoSum with a hashset")
+    @WorthLooking("efficient twoSum with a hashset for the other-number.")
     static boolean hasPairWithSum(int[] numbers, int sum) {
         Objects.requireNonNull(numbers, "null numbers");
         Set<Integer> othersSet = new HashSet<>();
@@ -228,7 +229,7 @@ public class DsaArrays {
 
     public static <T> String asString(T[] array) {
         StringJoiner joiner = new StringJoiner(", ");
-        java.util.Arrays.asList(array)
+        Arrays.asList(array)
                 .forEach(e -> joiner.add(e.toString()));
         return joiner.toString();
     }

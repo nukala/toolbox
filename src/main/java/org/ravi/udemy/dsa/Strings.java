@@ -38,16 +38,16 @@ public class Strings {
         }
 
         for (int i = 0; i < rest.length(); i++) {
-            List<String> tmp = permutations(fixed + rest.charAt(i),
-                    rest.substring(0, i) + rest.substring(i + 1));
+            String prev = rest.substring(0, i);
+            String remain = rest.substring(i + 1);
+            List<String> tmp = permutations(fixed + rest.charAt(i), prev + remain);
             list.addAll(tmp);
         }
         return list;
     }
 
     // From "ABCD": A, AB, ABC, ABCD, B, BC, BCD, C, CD, D
-    // actually asked in a video-interview
-    @WorthLooking("substrings from a big str")
+    @WorthLooking("substrings from a big str O(n^2) add-to-list-in-inner-loop")
     public static List<String> substrings(String input) {
         if ((input == null) || (input.length() == 0)) {
             return Lists.newArrayList(input);
@@ -57,7 +57,6 @@ public class Strings {
         int len = input.length();
         for (int i = 0; i < len; i++) {
             char ch = input.charAt(i);
-            //list.add("" + ch);
 
             for (int j = i + 1; j <= len; j++) {
                 String sub = input.substring(i + 1, j);
