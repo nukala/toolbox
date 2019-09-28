@@ -17,6 +17,7 @@ public class MyLinkList<T> implements TheLinkedList<T> {
         length++;
     }
 
+    @Override
     public String display() {
         Node<T> tmp = head;
         StringJoiner joiner = new StringJoiner(" ");
@@ -27,28 +28,61 @@ public class MyLinkList<T> implements TheLinkedList<T> {
         return joiner.toString();
     }
 
-    private void initLast() {
-        if (last == null) {
-            Node<T> tmpLast = head;
-            while (tmpLast.getNext() != null) {
-                tmpLast = tmpLast.getNext();
-            }
-            last = tmpLast;
-        }
+    @Override
+    public T valueAt(int index) {
+        return nodeAt(index).getPayload();
     }
 
-    public String toString() {
-        StringJoiner joiner = new StringJoiner(" -> ", "[", "]");
-        Node<T> node = head;
-
-        joiner.add(node.getPayload().toString());
-        while (node.getNext() != null) {
-            joiner.add(node.getNext().getPayload().toString());
-            node = node.getNext();
-        }
-        return joiner.toString();
+    @Override
+    public int getLength() {
+        return length;
     }
 
+    @Override
+    public void append(T value) {
+        initLast();
+
+        Node<T> node = new Node<>(value);
+        last.setNext(node);
+        last = node;
+        length++;
+    }
+
+    @Override
+    public void prepend(T value) {
+        Node<T> toAdd = new Node<>(value);
+
+        toAdd.setNext(head);
+        head = toAdd;
+        length++;
+    }
+
+    @Override
+    public T insert(T value, int index) {
+        if (index >= length) {
+            append(value);
+            return last.getPayload();
+        }
+
+        Node<T> toAdd = new Node<>(value);
+        Node<T> prev = nodeAt(index - 1);
+        Node<T> tmp = prev.getNext();
+        prev.setNext(toAdd);
+        toAdd.setNext(tmp);
+        length++;
+
+        return toAdd.getPayload();
+    }
+
+    @Override
+    public T remove(int index) {
+        Node<T> prev = nodeAt(index - 1);
+        Node<T> toRemove = prev.getNext();
+        prev.setNext(toRemove.getNext());
+
+        length--;
+        return toRemove.getPayload();
+    }
 
     @Override
     @WorthLooking("reverse linked list using 3 variables in a loop")
@@ -76,30 +110,33 @@ public class MyLinkList<T> implements TheLinkedList<T> {
         throw new RuntimeException("TODO - printReverse");
     }
 
-    public int getLength() {
-        return length;
+    @Override
+    @WorthLooking("recursive using a helper")
+    public void reverseRecursive() {
+        this.head = reverseRecursive(head);
+        this.last = null;
     }
 
-    public T valueAt(int index) {
-        return nodeAt(index).getPayload();
+    private void initLast() {
+        if (last == null) {
+            Node<T> tmpLast = head;
+            while (tmpLast.getNext() != null) {
+                tmpLast = tmpLast.getNext();
+            }
+            last = tmpLast;
+        }
     }
 
-    public void append(T value) {
-        initLast();
+    public String toString() {
+        StringJoiner joiner = new StringJoiner(" -> ", "[", "]");
+        Node<T> node = head;
 
-        Node<T> node = new Node<>(value);
-        last.setNext(node);
-        last = node;
-        length++;
-    }
-
-
-    public void prepend(T value) {
-        Node<T> toAdd = new Node<>(value);
-
-        toAdd.setNext(head);
-        head = toAdd;
-        length++;
+        joiner.add(node.getPayload().toString());
+        while (node.getNext() != null) {
+            joiner.add(node.getNext().getPayload().toString());
+            node = node.getNext();
+        }
+        return joiner.toString();
     }
 
     private Node<T> nodeAt(int index) {
@@ -115,38 +152,6 @@ public class MyLinkList<T> implements TheLinkedList<T> {
         }
 
         return theNode;
-    }
-
-    public T insert(T value, int index) {
-        if (index >= length) {
-            append(value);
-            return last.getPayload();
-        }
-
-        Node<T> toAdd = new Node<>(value);
-        Node<T> prev = nodeAt(index - 1);
-        Node<T> tmp = prev.getNext();
-        prev.setNext(toAdd);
-        toAdd.setNext(tmp);
-        length++;
-
-        return toAdd.getPayload();
-    }
-
-    public T remove(int index) {
-        Node<T> prev = nodeAt(index - 1);
-        Node<T> toRemove = prev.getNext();
-        prev.setNext(toRemove.getNext());
-
-        length--;
-        return toRemove.getPayload();
-    }
-
-    @Override
-    @WorthLooking("recursive using a helper")
-    public void reverseRecursive() {
-        this.head = reverseRecursive(head);
-        this.last = null;
     }
 
     private Node<T> reverseRecursive(Node<T> node) {

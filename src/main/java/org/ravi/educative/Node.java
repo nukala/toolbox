@@ -1,7 +1,12 @@
 package org.ravi.educative;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.StringJoiner;
 
+@Getter
+@Setter
 public final class Node<T> {
     private T payload;
     private Node<T> next;
@@ -10,18 +15,6 @@ public final class Node<T> {
         super();
         this.next = null;
         this.payload = val;
-    }
-
-    public T getPayload() {
-        return payload;
-    }
-
-    public Node<T> getNext() {
-        return next;
-    }
-
-    public void setNext(Node<T> node) {
-        this.next = node;
     }
 
     public String toString() {
