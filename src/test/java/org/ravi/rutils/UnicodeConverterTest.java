@@ -3,7 +3,6 @@ package org.ravi.rutils;
 import com.google.common.base.Charsets;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,9 +16,7 @@ import java.nio.file.Paths;
 import java.util.Formatter;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class UnicodeConverterTest {
     protected final Logger logger = LoggerFactory.getLogger(getClass());
@@ -33,7 +30,7 @@ public class UnicodeConverterTest {
         logger.warn(String.format("%nRAW\t\t[%s]%nconverted\t[%s]%nback\t\t[%s]%n", raw, cvt, back));
 
         List<String> parts = Splitter.on("=").splitToList(cvt);
-        assertThat(parts.size(), is(2));
+        assertThat(parts.size()).isEqualTo(2);
     }
 
     @Test
@@ -49,7 +46,7 @@ public class UnicodeConverterTest {
         List<String> linesList = Files.readAllLines(path, Charsets.UTF_8);
         logger.warn("numLines={}", linesList.size());
 
-        assertThat(linesList.size(), Matchers.greaterThan(3));
+        assertThat(linesList.size()).isGreaterThan(3);
 
         List<String> converted = Lists.newArrayListWithExpectedSize(linesList.size());
         BufferedWriter bw = Files.newBufferedWriter(Paths.get(fn.replace(".props", ".out")), Charsets.UTF_8);
@@ -66,7 +63,7 @@ public class UnicodeConverterTest {
         }
 
 
-        assertThat(linesList.size(), equalTo(converted.size()));
+        assertThat(linesList.size()).isEqualTo(converted.size());
     }
 
     @Test
