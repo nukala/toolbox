@@ -10,12 +10,12 @@ import java.util.zip.ZipFile;
 
 public class JarCat {
 
-	private static final boolean contains(String seq, String part) {
+	private static boolean contains(String seq, String part) {
 		if (seq == null || part == null) {
 			return false;
 		}
 
-		return seq.indexOf(part) >= 0;
+		return seq.contains(part);
 	}
 
 	private static List<String> findMatches(ZipFile zf, String entryName) {
@@ -33,7 +33,7 @@ public class JarCat {
 		return matchesList;
 	}
 
-	public static void main(String args[]) throws Exception {
+	public static void main(String[] args) throws Exception {
 		if (args.length < 2) {
 			System.out.println("usage: java -jar jarcat.jar <jarfile> <path_of_jarfile_entry>");
 			System.out.println("example: java -jar jarcat.jar myjar.jar \"META-INF/MANIFEST.MF\"");
