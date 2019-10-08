@@ -11,7 +11,6 @@ import java.security.NoSuchAlgorithmException;
 public class ToHexBenchmark {
 
     public static void main(String[] args) throws NoSuchAlgorithmException {
-
         String password = "123456789";
 
         MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -25,7 +24,6 @@ public class ToHexBenchmark {
     }
 
     private static String bytesToHex(byte[] hashInBytes) {
-
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < hashInBytes.length; i++) {
             sb.append(Integer.toString((hashInBytes[i] & 0xff) + 0x100, 16).substring(1));
@@ -35,7 +33,6 @@ public class ToHexBenchmark {
     }
 
     private static String bytesToHex2(byte[] hashInBytes) {
-
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < hashInBytes.length; i++) {
             String hex = Integer.toHexString(0xff & hashInBytes[i]);
@@ -47,7 +44,6 @@ public class ToHexBenchmark {
     }
 
     private static String bytesToHex3(byte[] hashInBytes) {
-
         StringBuilder sb = new StringBuilder();
         for (byte b : hashInBytes) {
             sb.append(String.format("%02x", b));

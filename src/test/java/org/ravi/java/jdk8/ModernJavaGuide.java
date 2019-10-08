@@ -1,4 +1,4 @@
-package org.java.jdk8;
+package org.ravi.java.jdk8;
 
 import org.junit.Test;
 
