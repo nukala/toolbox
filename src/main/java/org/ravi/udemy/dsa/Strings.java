@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class Strings {
     // https://www.udemy.com/master-the-coding-interview-data-structures-algorithms/learn/lecture/12308750#content
     // section6
-    static String reverse(String str) {
+    static String reverseSlow(String str) {
         if (str == null || str.length() <= 1) {
             return str;
         }
@@ -20,6 +20,27 @@ public class Strings {
             sb.append(str.charAt(i));
         }
         return sb.toString();
+    }
+
+    // listing 1.1 in the book
+    public static String reverse(String str) {
+        if (str == null || str.length() <= 1) {
+            return str;
+        }
+
+        char[] array = str.toCharArray();
+        int midPoint = array.length / 2;
+        int right;
+        char tmp;
+
+        for (int left = 0; left < midPoint; left++) {
+            right = array.length - 1 - left;
+            tmp = array[left];
+            array[left] = array[right];
+            array[right] = tmp;
+        }
+
+        return String.valueOf(array);
     }
 
     // javarevisited.blogspot.com/2015/08/how-to-find-all-permutations-of-string-java-example.html
