@@ -161,7 +161,7 @@ public class MyTree<T extends Comparable<T>> implements TheSearchTree<T> {
         return true;
     }
 
-    // https://www.youtube.com/watch?v=i_Q0v_Ct5lY
+    // TODO https://www.youtube.com/watch?v=i_Q0v_Ct5lY
     @WorthLooking("checkBSTRecursive: compare left-node should be min<-->root; right-node root<-->max")
     @SuppressWarnings({"unused"})
     private boolean checkBSTRecursive(TreeNode<T> node, T min, T max) {
