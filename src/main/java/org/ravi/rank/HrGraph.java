@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 // hacker-rank graph
 public class HrGraph<T> {
     /**
-     * To help generate ids for farster lookup of nodes. This is not necessary
+     * To help generate ids for faster lookup of nodes. This is not necessary
      */
     private static AtomicInteger counter = new AtomicInteger(0);
     private Map<Integer, HrNode<T>> nodeLookup = new HashMap<>();

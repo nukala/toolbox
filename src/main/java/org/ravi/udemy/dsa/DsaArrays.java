@@ -182,7 +182,7 @@ public class DsaArrays {
             if (othersSet.contains(number)) {
                 return true;
             } else {
-                // guard against over-flow
+                // guard against underflow: Math.subtractExact() and lack of exception
                 othersSet.add(sum - number);
             }
         }
