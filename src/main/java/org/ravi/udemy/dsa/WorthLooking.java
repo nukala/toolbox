@@ -11,7 +11,7 @@ import java.lang.annotation.*;
  */
 @Retention(RetentionPolicy.SOURCE)
 @Documented
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD, ElementType.LOCAL_VARIABLE})
 public @interface WorthLooking {
     String value();
 }
