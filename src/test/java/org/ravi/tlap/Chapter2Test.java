@@ -1,14 +1,10 @@
 package org.ravi.tlap;
 
-import com.google.common.base.Joiner;
-import com.google.common.collect.Lists;
-import com.google.common.primitives.Ints;
 import org.junit.Test;
+import org.ravi.tlap.DecodeSpecial.Mode;
 import org.ravi.udemy.dsa.WorthLooking;
 
 import java.util.Formatter;
-import java.util.List;
-import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.IntSupplier;
 import java.util.stream.IntStream;
@@ -47,5 +43,17 @@ public class Chapter2Test {
         String str = "18,12312,171,763,98423,1208,216,11,500,18,241,0,32,20620,27,10";
         String decoded = new DecodeSpecial().decode(str);
         assertThat(decoded).isEqualTo("Right? Yes!");
+    }
+
+    @Test
+    public void modeTests() {
+        assertThat(Mode.UPPER.convert(18)).isEqualTo('R');
+        assertThat(Mode.UPPER.convert(1)).isEqualTo('A');
+
+        assertThat(Mode.LOWER.convert(18)).isEqualTo('r');
+        assertThat(Mode.LOWER.convert(1)).isEqualTo('a');
+
+        assertThat(Mode.PUNCTUATION.convert(1)).isEqualTo('!');
+        assertThat(Mode.PUNCTUATION.convert(5)).isEqualTo(' ');
     }
 }
