@@ -1,21 +1,12 @@
 package org.ravi.tlap;
 
+import org.ravi.udemy.dsa.WorthLooking;
+
 // special decoding system by reading numbers and flipping around among upper/lower/punctation with modulo 27/27/9
 // Chapter2 see p41 or pdf=61
 public class DecodeSpecial {
     static char[] PUNCTUATIONS = {'*', '!', '?', ',', '.', ' ', ';', '"', '\''};
     private Mode mode = Mode.UPPER;
-
-    private char convert(int mod) {
-        if (mode == Mode.UPPER) {
-            return (char) ('A' + mod - 1);
-        } else if (mode == Mode.LOWER) {
-            return (char) ('a' + mod - 1);
-        } else if (mode == Mode.PUNCTUATION) {
-            return PUNCTUATIONS[mod];
-        }
-        throw new IllegalStateException("mod=" + mod + ", mode=" + mode);
-    }
 
     public String decode(String str) {
         String decoded = "";
@@ -27,8 +18,7 @@ public class DecodeSpecial {
                 mode = mode.getNext();
                 continue;
             }
-            char ch = convert(mod);
-
+            char ch = mode.convert(mod);
             decoded += ch;
         }
 
@@ -37,9 +27,22 @@ public class DecodeSpecial {
 
 
     enum Mode {
-        UPPER(27),
-        LOWER(27),
-        PUNCTUATION(9);
+        @WorthLooking("careful around the starting index. here it is 1")
+        UPPER(27) {
+            public char convert(int mod) {
+                return (char) ('A' + mod - 1);
+            }
+        },
+        LOWER(27) {
+            public char convert(int mod) {
+                return (char) ('a' + mod - 1);
+            }
+        },
+        PUNCTUATION(9) {
+            public char convert(int mod) {
+                return PUNCTUATIONS[mod];
+            }
+        };
 
         private int modulo;
 
@@ -63,5 +66,7 @@ public class DecodeSpecial {
         public int getModulo() {
             return modulo;
         }
+
+        public abstract char convert(int mod);
     }
 }
