@@ -1,9 +1,11 @@
 package org.ravi.tlap;
 
-// 
+import org.apache.commons.lang3.StringUtils;
+
+//
 // p31 pdf=51
 public class LuhnValidation {
-    static int nearest10(int num) {
+    int nearest10(int num) {
         int sum = 0;
         while (true) {
             if ((sum + num) % 10 == 0) {
@@ -14,7 +16,7 @@ public class LuhnValidation {
         return sum;
     }
 
-    static int getDigitFromRight(String bigStr, int locFromRight) {
+    int getDigitFromRight(String bigStr, int locFromRight) {
         if (locFromRight <= 0) {
             return -1;
         }
@@ -31,7 +33,7 @@ public class LuhnValidation {
     /**
      * -1 if error
      */
-    static int twiceSum(String bigStr, int locFromRight) {
+    int twiceSum(String bigStr, int locFromRight) {
         int value = getDigitFromRight(bigStr, locFromRight);
         if (value < 0) {
             return value;
@@ -50,11 +52,18 @@ public class LuhnValidation {
         return sum == getSum(bigNum);
     }
 
-    public int getSum(int bigNum) {
+    public boolean validate(String str) {
+        String numStr = StringUtils.substring(str, 0, str.length() - 1);
+        String sumStr = StringUtils.substring(str, str.length() - 1);
+
+        int sum = Integer.parseInt(sumStr);
+        return sum == getSum(numStr);
+    }
+
+    public int getSum(String bigStr) {
         int tmpSum = 0;
 
         int loc = 1;
-        String bigStr = String.valueOf(bigNum);
         while (true) {
             int twiceSum = twiceSum(bigStr, loc);
             if (twiceSum < 0) {
@@ -71,5 +80,9 @@ public class LuhnValidation {
         }
 
         return nearest10(tmpSum);
+    }
+
+    public int getSum(int bigNum) {
+        return getSum(String.valueOf(bigNum));
     }
 }
