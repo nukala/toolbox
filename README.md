@@ -11,3 +11,7 @@ _*Transparency*_
 Most of the code, I indicated the source of the code/algorithm/inspiration. Please excuse violators of this rule.
 
 <h2>WARNING</h2> Parent-pom, from a sibling repo, pulls down versions that have vulnerabilities. Use caution
+
+<h2>NOTE</h2>
+Uses lombok to help generate some bioler plate code. 
+See: https://www.baeldung.com/lombok-ide to get started. 
