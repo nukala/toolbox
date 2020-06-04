@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 // hacker-rank graph
+@SuppressWarnings({"unused"})
 public class HrGraph<T> {
     /**
      * To help generate ids for faster lookup of nodes. This is not necessary
