@@ -78,11 +78,10 @@ public class MyHashMap implements TheHashMap {
     public int getSize() {
         return size;
     }
-
-    @SuppressWarnings({"unchecked"})
+    
     @Override
-    public MyJavaScriptArray keys() {
-        MyJavaScriptArray keys = new MyJavaScriptArray();
+    public MyJavaScriptArray<String> keys() {
+        MyJavaScriptArray<String> keys = new MyJavaScriptArray<>();
         for (Entry entry : entries) {
             if (entry == null) {
                 continue;

@@ -56,29 +56,6 @@ public class BinarySearchTree<T> {
         consumer.accept(node);
     }
 
-    // TODO: make sense of this, DOES NOT WORK@2
-//    public void insert(int value) {
-//        insertNode(this.root, value);
-//    }
-//
-//    private TreeNode<T> insertNode(TreeNode root, int value) {
-//        if (root == null) {
-//            //if this node is root of tree
-//            setRoot(new TreeNode(value));
-//        } else {
-//            if ((int) root.getValue() > value) {
-//             /* If root is greater than value,
-//                node should be added to left subtree */
-//                root.setLeft(insertNode(root.getLeft(), value));
-//            } else {
-//                /* If root is less than value,
-//                node should be added to right subtree */
-//                root.setRight(insertNode(root.getRight(), value));
-//            }
-//        }
-//        return root;
-//    }
-
     public TreeNode<T> getRoot() {
         return this.root;
     }
@@ -103,6 +80,28 @@ public class BinarySearchTree<T> {
         return Integer.max(leftHeight, rightHeight) + 1;
     }
 
+    // TODO: make sense of this, DOES NOT WORK@2
+//    public void insert(int value) {
+//        insertNode(this.root, value);
+//    }
+//
+//    private TreeNode<T> insertNode(TreeNode root, int value) {
+//        if (root == null) {
+//            //if this node is root of tree
+//            setRoot(new TreeNode(value));
+//        } else {
+//            if ((int) root.getValue() > value) {
+//             /* If root is greater than value,
+//                node should be added to left subtree */
+//                root.setLeft(insertNode(root.getLeft(), value));
+//            } else {
+//                /* If root is less than value,
+//                node should be added to right subtree */
+//                root.setRight(insertNode(root.getRight(), value));
+//            }
+//        }
+//        return root;
+//    }
     // TODO: Convert into a unit-test, DOES NOT WORK@2
 //    public static class App {
 //        public static void main(String[] args) {
