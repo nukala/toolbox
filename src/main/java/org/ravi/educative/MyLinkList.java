@@ -12,7 +12,7 @@ public class MyLinkList<T> implements TheLinkedList<T> {
     private int length;
 
     public MyLinkList(T value) {
-        head = new Node<>(value);
+        head = Node.of(value);
         last = head;
         length++;
     }
@@ -42,7 +42,7 @@ public class MyLinkList<T> implements TheLinkedList<T> {
     public void append(T value) {
         initLast();
 
-        Node<T> node = new Node<>(value);
+        Node<T> node = Node.of(value);
         last.setNext(node);
         last = node;
         length++;
@@ -50,7 +50,7 @@ public class MyLinkList<T> implements TheLinkedList<T> {
 
     @Override
     public void prepend(T value) {
-        Node<T> toAdd = new Node<>(value);
+        Node<T> toAdd = Node.of(value);
 
         toAdd.setNext(head);
         head = toAdd;
@@ -64,7 +64,7 @@ public class MyLinkList<T> implements TheLinkedList<T> {
             return last.getPayload();
         }
 
-        Node<T> toAdd = new Node<>(value);
+        Node<T> toAdd = Node.of(value);
         Node<T> prev = nodeAt(index - 1);
         Node<T> tmp = prev.getNext();
         prev.setNext(toAdd);

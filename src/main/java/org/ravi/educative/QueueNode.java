@@ -1,7 +1,12 @@
 package org.ravi.educative;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.StringJoiner;
 
+@Getter
+@Setter
 public final class QueueNode<T> {
     private T payload;
     private QueueNode<T> prev;
@@ -10,18 +15,6 @@ public final class QueueNode<T> {
         super();
         this.prev = null;
         this.payload = val;
-    }
-
-    public T getPayload() {
-        return payload;
-    }
-
-    public QueueNode<T> getPrev() {
-        return prev;
-    }
-
-    public void setPrev(QueueNode<T> node) {
-        this.prev = node;
     }
 
     public String toString() {

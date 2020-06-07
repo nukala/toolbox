@@ -26,7 +26,7 @@ public class MyLinkedStack<T> implements TheStack<T> {
 
     @Override
     public void push(T value) {
-        Node<T> tmp = new Node<>(value);
+        Node<T> tmp = Node.of(value);
         tmp.setNext(top);
         top = tmp;
         length++;

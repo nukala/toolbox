@@ -11,10 +11,14 @@ public final class Node<T> {
     private T payload;
     private Node<T> next;
 
-    public Node(T val) {
+    private Node(T val) {
         super();
         this.next = null;
         this.payload = val;
+    }
+
+    public static <T> Node<T> of(T value) {
+        return new Node(value);
     }
 
     public String toString() {

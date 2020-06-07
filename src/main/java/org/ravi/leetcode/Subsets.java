@@ -6,8 +6,9 @@ import java.util.List;
 // given a unique set, make all possible subsets including empty and all-elements
 public class Subsets<T> {
     private static <T> void generateSubset(List<List<T>> results, T[] ary, int i, List<T> prev) {
-        if (i >= ary.length)
+        if (i >= ary.length) {
             return;
+        }
         List<T> ls = new ArrayList<>(prev);
         results.add(ls);
         generateSubset(results, ary, i + 1, ls); // Generate new subset without adding current number.

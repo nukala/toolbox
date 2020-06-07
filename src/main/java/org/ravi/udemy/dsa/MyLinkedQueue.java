@@ -22,12 +22,10 @@ public class MyLinkedQueue<T> implements TheQueue<T> {
     public TheQueue<T> enqueue(T value) {
         QueueNode<T> newNode = new QueueNode<>(value);
 
-        if (top == null) {
-            top = newNode;
-        } else {
+        if (top != null) {
             top.setPrev(newNode);
-            top = newNode;
         }
+        top = newNode;
         if (bottom == null) {
             bottom = top;
         }

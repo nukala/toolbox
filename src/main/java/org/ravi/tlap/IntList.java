@@ -44,7 +44,7 @@ public class IntList {
             int digit = raw % 10;
             raw = raw / 10;
 
-            list.add(new IntNode(digit));
+            list.add(IntNode.of(digit));
         }
 
         IntNode head = null, tmp = null;
@@ -72,11 +72,15 @@ public class IntList {
     @Getter
     @Setter
     private static class IntNode {
-        private int digit;
+        private final int digit;
         private IntNode next;
 
-        public IntNode(int digit) {
+        private IntNode(int digit) {
             this.digit = digit;
+        }
+
+        public static IntNode of(int digit) {
+            return new IntNode(digit);
         }
     }
 }
