@@ -1,8 +1,14 @@
 package org.ravi.rutils.sams.dsa2;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Optional;
 
 // https://algorithmsandme.com/level-order-traversal-of-binary-tree/
+@Getter
+@Setter
+//T extends Comparable<? super T>
 public class TreeNode<T> {
     private T value;
     private Optional<TreeNode<T>> left;
@@ -12,14 +18,6 @@ public class TreeNode<T> {
         this.value = value;
         this.left = Optional.empty();
         this.right = Optional.empty();
-    }
-
-    public T getValue() {
-        return this.value;
-    }
-
-    public void setValue(T value) {
-        this.value = value;
     }
 
     public TreeNode<T> getRight() {
