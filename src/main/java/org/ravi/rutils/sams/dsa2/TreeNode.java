@@ -53,5 +53,13 @@ public class TreeNode<T> {
     public boolean hasRight() {
         return right.isPresent();
     }
+
+    // TODO
+//    public int compareTo(Object obj) {
+//        TreeNode<T> other = (TreeNode<T>)obj;
+//
+//        //currNode.getValue().compareTo(currNode.getLeft().getValue());
+//        return getValue().compareTo(other.getValue());
+//    }
 }
 
