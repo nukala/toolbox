@@ -94,7 +94,7 @@ public class MyTree<T extends Comparable<T>> implements TheSearchTree<T> {
     }
 
     @Override
-    @WorthLooking("breadth first using a queue")
+    @WorthLooking("iterative bfs using a queue")
     public void breadthFirst(Consumer<T> consumer) {
         if ((root == null) || (consumer == null)) {
             return;
@@ -119,6 +119,7 @@ public class MyTree<T extends Comparable<T>> implements TheSearchTree<T> {
     }
 
     @Override
+    @WorthLooking("recursive bfs using helper")
     public void breadthFirstRecursive(Consumer<T> consumer) {
         if ((root == null) || (consumer == null)) {
             return;
@@ -144,6 +145,7 @@ public class MyTree<T extends Comparable<T>> implements TheSearchTree<T> {
 
             if (currNode.hasLeft()) {
                 int result = currNode.getValue().compareTo(currNode.getLeft().getValue());
+                // TODO int result = currNode.compareTo(currNode.getLeft());
                 if (result <= 0) { // curr is lessThanOrEqual to left, not allowed
                     return false;
                 }

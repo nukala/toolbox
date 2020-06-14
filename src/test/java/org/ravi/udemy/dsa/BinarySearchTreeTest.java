@@ -62,7 +62,7 @@ public class BinarySearchTreeTest {
     public void breadthFirstCheck() {
         StringJoiner joiner = new StringJoiner(" ");
         tree.breadthFirst((Integer ii) -> joiner.add(ii.toString()));
-        //System.out.printf("%s %n", joiner.toString());
+        System.out.printf("%s %n", joiner.toString());
         assertThat(joiner.toString())
                 .as("bfsConsumption string verification")
                 .isEqualTo("9 4 20 1 6 15 170");
