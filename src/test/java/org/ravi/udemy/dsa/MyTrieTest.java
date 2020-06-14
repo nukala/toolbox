@@ -4,7 +4,6 @@ import org.junit.Test;
 import org.ravi.educative.TheTrie;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.ATOMIC_LONG;
 import static org.ravi.udemy.dsa.MyTrie.of;
 
 public class MyTrieTest {
@@ -36,6 +35,7 @@ public class MyTrieTest {
         MyTrie iTree = ((MyTrie) trie).getChildren()[MyTrie.Alphabet.getIndex('i')];
         assertThat(iTree.getNumChildren()).isEqualTo(1);
     }
+
     @Test
     public void nodeTest() {
         TheTrie trie = of("park parker parked parking Peter");

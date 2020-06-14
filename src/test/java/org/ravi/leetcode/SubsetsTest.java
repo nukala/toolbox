@@ -1,9 +1,12 @@
 package org.ravi.leetcode;
 
+import com.google.common.base.Joiner;
+import com.google.common.collect.Sets;
 import org.junit.Test;
 import org.ravi.udemy.dsa.WorthLooking;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -14,7 +17,7 @@ public class SubsetsTest {
     @Test
     public void integerSubsets() {
         @WorthLooking("stream of primitives -- use boxed")
-        Integer ary[] = IntStream.range(1, 4)
+        Integer[] ary = IntStream.range(1, 4)
                 .boxed()
                 .collect(Collectors.toList())
                 .toArray(new Integer[0]);
@@ -66,5 +69,24 @@ public class SubsetsTest {
                 });
         System.out.println("");
         assertThat(elems.get()).isEqualTo(5);
+    }
+
+    @Test
+    public void pwwkew() { // from levelup
+        assertThat(Subsets.lengthOfLongestSubstring("pwwkew"))
+                .as("longestSubstringLen should be 3")
+                .isEqualTo(3);
+    }
+
+    @Test
+    public void setToArray() {
+        // demonstrates how to use setToArray
+        Set<String> set = Sets.newHashSet("A1", "A4", "A3", "A2");
+
+        String[] ary = set.toArray(new String[]{});
+        System.out.printf("array = [%s]%n", Joiner.on(",").join(ary));
+        assertThat(ary)
+                .as("Set converted into array")
+                .containsAll(set);
     }
 }
