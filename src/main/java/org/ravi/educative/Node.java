@@ -18,7 +18,7 @@ public final class Node<T> {
     }
 
     public static <T> Node<T> of(T value) {
-        return new Node(value);
+        return new Node<>(value);
     }
 
     public String toString() {
