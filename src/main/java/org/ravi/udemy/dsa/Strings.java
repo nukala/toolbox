@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class Strings {
+public class Strings {        
     // https://www.udemy.com/master-the-coding-interview-data-structures-algorithms/learn/lecture/12308750#content
     // section6
     static String reverseSlow(String str) {

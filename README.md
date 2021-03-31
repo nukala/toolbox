@@ -23,8 +23,10 @@ Most of the code, I indicated the source of the code/algorithm/inspiration.
 
 **WARNING**
 ---------
-`Parent-pom`, from a sibling repo, pulls down versions that have vulnerabilities. Use caution
+`Parent-pom` from a sibling repo, pulls down versions that have vulnerabilities. Use caution
 
 _NOTE_
 ------
-Uses [lombok](https://www.baeldung.com/lombok-ide) to help generate some bioler plate code.
+1. Uses [lombok](https://www.baeldung.com/lombok-ide) to help generate some boiler plate code.
+
+2. Also, in my IDE rebuild fails, command line is SUCCESS. In those cases, I made spacing changes and the IDE recompiled and resolved everything. Unfortunately, plain rebuild class did not work with IntelliJ-Community. 

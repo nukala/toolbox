@@ -1,0 +1,22 @@
+package org.ravi.interview;
+
+/**
+ *         Read more: http://javarevisited.blogspot.com/2013/02/swap-two-numbers-without-third-temp-variable-java-program-example-tutorial.html#ixzz2WQDg5oqG
+ */
+public class StringSwap {
+    public static void main(String ... args) {
+        String a = "abc";
+        String b = "def";
+
+        System.out.printf("Start: a=[%s], b=[%s]%n%n", a, b);
+
+        b = a.length() + "_" + a + b;
+        System.out.printf("1: a=[%s], b=[%s]%n%n", a, b);
+
+        a = b.substring(Integer.parseInt(b.split("_")[0]) + b.indexOf("_") + 1);
+        System.out.printf("2: a=[%s], b=[%s]%n%n", a, b);
+
+        b = b.substring(b.indexOf("_") + 1, b.indexOf("_") + 1 + Integer.parseInt(b.split("_")[0]));
+        System.out.printf("3: a=[%s], b=[%s]%n%n", a, b);
+    }
+}
