@@ -1,0 +1,10 @@
+/**
+ * Created with IntelliJ IDEA.
+ * User: ravi
+ * Date: 5/27/13
+ * Time: 6:21 AM
+ * To change this template use File | Settings | File Templates.
+ */
+public class SynchClass {
+    // modififier synchronized not allowed at class declaration.
+}
