@@ -14,7 +14,7 @@ public class DsaArrays {
         }
         Object[] array = new Object[numItems];
 
-        for (int i = 0; i < numItems; i++) {
+        for (int i = 0; i < numItems; i++) { 
             array[i] = supplier.get();
         }
 

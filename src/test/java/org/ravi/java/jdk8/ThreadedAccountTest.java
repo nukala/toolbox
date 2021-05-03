@@ -15,10 +15,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * To test some multi-threaded synchronization code
  * <br/>
- * Shows that manytimes we cannot predict when a thread would run, hence balance is not 
+ * Shows that many times we cannot predict when a thread would run, hence balance is not
  * always close to ZERO
  */
-// dzone article.
+// DZone article.
 public class ThreadedAccountTest {
     private static final ExecutorService SERVICE = Executors.newFixedThreadPool(25);
 
@@ -43,7 +43,7 @@ public class ThreadedAccountTest {
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    class BankAccount {
+    static class BankAccount {
         double balance;
 
         public void credit(double amount) {

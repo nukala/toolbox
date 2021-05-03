@@ -27,6 +27,7 @@ public class ModernJavaGuide {
         Clock systemClock = Clock.systemDefaultZone();
         Clock utcClock = Clock.systemUTC();
 
+        // using inline invocations avoiding statics above, causes a drift
         long now = System.currentTimeMillis();
         long sys = systemClock.millis();
         long utc = utcClock.millis();

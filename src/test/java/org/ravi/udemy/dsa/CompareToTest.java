@@ -24,10 +24,11 @@ public class CompareToTest {
                 .isPositive()
                 .isNotNegative()
                 .isEqualTo(1);
-
-        large = Integer.parseInt("1");
-        assertThat(large.compareTo(small))
+        
+        assertThat(Integer.valueOf(1).compareTo(small))
                 .as("zero since both are equal")
+                .isNotPositive()
+                .isNotNegative()
                 .isZero();
     }
 }
