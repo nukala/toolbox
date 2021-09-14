@@ -10,7 +10,7 @@ import static org.ravi.udemy.dsa.DsaArrays.doSplit;
 // sort routines learned at Udemy class
 public class UdemySorters {
     // TODO: use threadLocal instead of using name everywhere
-    private static Map<String, SortMetrics> metricsMap = new HashMap<>();
+    private static final Map<String, SortMetrics> metricsMap = new HashMap<>();
 
     private UdemySorters() {
         // cant instantiate
@@ -107,6 +107,7 @@ public class UdemySorters {
         end(sortName);
     }
 
+    @SuppressWarnings("unused")
     // TODO: implement quick sort
     public static <T extends Comparable<T>> void quickSort(T[] array) {
     }
@@ -138,11 +139,10 @@ public class UdemySorters {
 
             if (result < 0) {
                 array[combined++] = leftArray[left++];
-                swapped("merge");
             } else {
                 array[combined++] = rightArray[right++];
-                swapped("merge");
             }
+            swapped("merge");
         }
 
         while (left < leftCount) {
@@ -185,9 +185,9 @@ public class UdemySorters {
     private static class SortMetrics {
         private final String name;
         private final int count;
+        private final Stopwatch timer;
         private int numCompares;
         private int numSwaps;
-        private Stopwatch timer;
 
         SortMetrics(String name, int count) {
             this.name = name;
