@@ -18,7 +18,7 @@ public class Subsets<T> {
         generateSubset(results, ary, i + 1, ls); // Generate new subset with current number added.
     }
 
-    // leet -> resc
+    // leet -> recursive
     public static <T> List<List<T>> subsets(T[] ary) {
         List<List<T>> results = new ArrayList<>();
         results.add(new ArrayList<T>());
