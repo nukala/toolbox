@@ -64,11 +64,11 @@ public class BinarySearchTree<T> {
         this.root = node;
     }
 
-    @WorthLooking("Height of binaryTree recursive-max-plus-one")
     public int height() {
         return height(this.getRoot());
     }
 
+    @WorthLooking("Height of binaryTree recursive-max-plus-one")
     private int height(TreeNode<T> currentNode) {
         if (currentNode == null) {
             return 0;
