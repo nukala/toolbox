@@ -111,7 +111,6 @@ public class MyLinkList<T> implements TheLinkedList<T> {
     }
 
     @Override
-    @WorthLooking("recursive using a helper")
     public void reverseRecursive() {
         this.head = reverseRecursive(head);
         this.last = null;
@@ -154,6 +153,7 @@ public class MyLinkList<T> implements TheLinkedList<T> {
         return theNode;
     }
 
+    @WorthLooking("recursive using a helper")
     private Node<T> reverseRecursive(Node<T> node) {
         if (node == null) {
             return null;
