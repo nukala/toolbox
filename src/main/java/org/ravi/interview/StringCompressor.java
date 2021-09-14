@@ -28,12 +28,13 @@ public class StringCompressor {
         return sb.toString();
     }
 
+    /** compress by reducing repeating chars to their number. So aaabbbccc = a3b3c3 and so on */
     @WorthLooking("pay attention to the last character, it should not be dangling")
     public static String compress(String data) {
         if (StringUtils.isEmpty(data)) {
             return StringUtils.EMPTY;
         }
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(data.length());
         Character oldChar = null;
 
         int count = 0;
