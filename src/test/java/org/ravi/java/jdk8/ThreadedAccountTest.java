@@ -46,6 +46,7 @@ public class ThreadedAccountTest {
     static class BankAccount {
         double balance;
 
+        // RNTODO: boolean controlled lock
         public void credit(double amount) {
             balance = balance + amount;
         }
