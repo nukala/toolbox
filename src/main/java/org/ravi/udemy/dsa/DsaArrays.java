@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.function.Supplier;
 
 public class DsaArrays {
-    private static Random RANDOM = new Random();
+    private static final Random RANDOM = new Random();
 
 
     @SuppressWarnings({"unchecked"})
@@ -112,7 +112,7 @@ public class DsaArrays {
         }
     }
 
-    private static Integer getValueAtIndex(int ary[], int index) {
+    private static Integer getValueAtIndex(int[] ary, int index) {
         return (index < ary.length) ?
                 ary[index] : null;
     }
@@ -122,7 +122,7 @@ public class DsaArrays {
     // inspired by class solution
     @WorthLooking("merge two sorted arrays")
     //TODO convert into Comparables
-    static int[] mergeSortedArrays2(int left[], int right[]) {
+    static int[] mergeSortedArrays2(int[] left, int[] right) {
         if ((left == null) && (right == null)) {
             return null;
         } else if (left == null) {
@@ -194,10 +194,10 @@ public class DsaArrays {
     // ['a', 'b', 'c', 'x' ] with ['z', 'y', 'i'] returns false
     // WHILE
     // ['a', 'b', 'c', 'z' ] with ['z', 'y', 'x'] returns true
-    static boolean containsNaive(char arr1[], char arr2[]) {
-        for (int i = 0; i < arr1.length; i++) {
+    static boolean containsNaive(char[] arr1, char[] arr2) {
+        for (char c : arr1) {
             for (int j = 0; j < arr2.length; j++) {
-                if (arr1[i] == arr2[j]) {
+                if (c == arr2[j]) {
                     return true;
                 }
             }
@@ -212,7 +212,7 @@ public class DsaArrays {
     // WHILE
     // ['a', 'b', 'c', 'z' ] with ['z', 'y', 'x'] returns true
     @WorthLooking("contains between two arrays using leftSet O(n)")
-    static boolean containsImproved(char left[], char right[]) {
+    static boolean containsImproved(char[] left, char[] right) {
         Set<Character> leftSet = new HashSet<>();
         for (int i = 0; i < left.length; i++) {
             leftSet.add(left[i]);

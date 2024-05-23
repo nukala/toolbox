@@ -3,7 +3,7 @@ package org.ravi.udemy.dsa;
 public class MyArrayQueue<T> implements TheQueue<T> { // FIFO
     private int size;
     private int enqIndex;
-    private Object[] array;
+    private final Object[] array;
 
     public MyArrayQueue() {
         this(10);

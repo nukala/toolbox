@@ -30,3 +30,5 @@ _NOTE_
 1. Uses [lombok](https://www.baeldung.com/lombok-ide) to help generate some boiler plate code.
 
 2. Also, in my IDE rebuild fails, command line is SUCCESS. In those cases, I made spacing changes and the IDE recompiled and resolved everything. Unfortunately, plain rebuild class did not work with IntelliJ-Community. 
+
+3. Stream [tutorial](https://stackify.com/streams-guide-java-8) groups methods 

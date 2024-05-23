@@ -1,6 +1,7 @@
 package org.ravi.interview;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -24,7 +25,7 @@ interface FastMap<KK, VV> {
     default void put(KK key, VV value) {
     }
 
-    default void setAll(VV focedValue) {
+    default void setAll(VV forcedValue) {
     }
 }
 

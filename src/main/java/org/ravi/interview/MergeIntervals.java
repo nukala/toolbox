@@ -60,13 +60,13 @@ public class MergeIntervals {
             answerIndex++;
         }
 
-        try (Formatter fmtr = new Formatter(new StringBuilder())) {
+        try (Formatter formatter = new Formatter(new StringBuilder())) {
             for (int i = 0; i < answerIndex; i++) {
                 Pair pair = answer[i];
 
-                fmtr.format("{%d, %d}%s", pair.left, pair.right, (i < answerIndex - 1) ? ", " : "");
+                formatter.format("{%d, %d}%s", pair.left, pair.right, (i < answerIndex - 1) ? ", " : "");
             }
-            System.out.printf("{ %s }%n", fmtr.toString());
+            System.out.printf("{ %s }%n", formatter);
         }
     }
 

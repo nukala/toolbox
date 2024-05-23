@@ -9,7 +9,7 @@ import lombok.Getter;
 // JavaScript uses String->Object not type safe
 public class MyHashMap implements TheHashMap {
     private int size;
-    private Entry[] entries;
+    private final Entry[] entries;
 
     public MyHashMap() {
         this(10);
@@ -109,7 +109,7 @@ public class MyHashMap implements TheHashMap {
     }
 
     private static class Entry {
-        private MyJavaScriptArray<KV> kvs;
+        private final MyJavaScriptArray<KV> kvs;
 
         Entry() {
             this.kvs = new MyJavaScriptArray<>(1);

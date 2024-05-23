@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Place holder for dynamic programming utilities.
+ * Placeholder for dynamic programming utilities.
  */
 public class DynamicProgUtils {
 

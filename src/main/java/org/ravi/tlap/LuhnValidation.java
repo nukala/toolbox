@@ -7,10 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 public class LuhnValidation {
     int nearest10(int num) {
         int sum = 0;
-        while (true) {
-            if ((sum + num) % 10 == 0) {
-                break;
-            }
+        while ((sum + num) % 10 != 0) {
             sum++;
         }
         return sum;
@@ -26,8 +23,7 @@ public class LuhnValidation {
             return -1;
         }
         String sub = bigStr.substring(begin, begin + 1);
-        int value = Integer.parseInt(sub);
-        return value;
+        return Integer.parseInt(sub);
     }
 
     /**

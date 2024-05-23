@@ -3,7 +3,7 @@ package org.ravi.udemy.dsa;
 // non-resizing array (deviation from the JavaScript code) LIFO
 public class MyArrayStack<T> implements TheStack<T> {
     private int size;
-    private Object[] array;
+    private final Object[] array;
     private int top;
 
     public MyArrayStack() {
@@ -23,7 +23,7 @@ public class MyArrayStack<T> implements TheStack<T> {
     @SuppressWarnings("unchecked")
     @Override
     public T pop() {
-        if (size == 0) {
+        if (isEmpty()) {
             throw new IllegalStateException("empty");
         }
 
@@ -33,7 +33,7 @@ public class MyArrayStack<T> implements TheStack<T> {
 
     @Override
     public void push(T value) {
-        if (size == array.length) {
+        if (isFull()) {
             throw new RuntimeException("need to resize");
         }
 
@@ -53,5 +53,9 @@ public class MyArrayStack<T> implements TheStack<T> {
     @Override
     public int getSize() {
         return size;
+    }
+
+    private boolean isFull() {
+        return size == array.length;
     }
 }
