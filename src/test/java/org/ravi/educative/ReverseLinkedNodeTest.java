@@ -13,11 +13,22 @@ public class ReverseLinkedNodeTest {
     @Test
     public void reverseLoopTest() {
         TheLinkedList<Integer> linkList = from(7, 14, 21, 28);
-        //System.out.printf("Before = %s%n", head.display());
+        System.out.printf("Before = %s%n", linkList);
         linkList.reverse();
-        System.out.printf("Reversed = [%s]%n", linkList);
+        System.out.printf("Reversed = %s%n", linkList);
         assertThat(linkList.display())
                 .isEqualTo("28 21 14 7");
+    }
+
+
+    @Test
+    public void bookExample() { // run it in debugger
+        TheLinkedList<String> linkList = from("a1", "a2", "a3", "a4");
+        System.out.printf("Before = %s%n", linkList);
+        linkList.reverse();
+        System.out.printf("Reversed = %s%n", linkList);
+        assertThat(linkList.display())
+                .isEqualTo("a4 a3 a2 a1");
     }
 
     @Test

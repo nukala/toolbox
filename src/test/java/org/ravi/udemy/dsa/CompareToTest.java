@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-// used to be simpletest, but renamed to be help with finds.
 public class CompareToTest {
 
     @Test
