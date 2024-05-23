@@ -87,20 +87,35 @@ public class MyLinkList<T> implements TheLinkedList<T> {
     @Override
     @WorthLooking("reverse linked list using 3 variables in a loop")
     public void reverse() {
-        Node<T> remaining = head.getNext();
-        Node<T> reversed = head;
-        reversed.setNext(null);
+//        Node<T> remaining = head.getNext();
+//        Node<T> reversed = head;
+//        reversed.setNext(null);
+//
+//        while (remaining != null) {
+//            Node<T> temp = remaining;
+//            remaining = remaining.getNext();
+//
+//            temp.setNext(reversed);
+//            reversed = temp;
+//        }
+//
+//        this.head = reversed;
+//        this.last = null;
 
-        while (remaining != null) {
-            Node<T> temp = remaining;
-            remaining = remaining.getNext();
-
-            temp.setNext(reversed);
-            reversed = temp;
+        // p15 - kindle interview questions
+        // excessive variables - to help understand
+        if ( (head == null) || (head.getNext() == null)) {
+            return;
         }
+        Node<T> p1 = head;
+        while (p1.getNext() != null) {
+            Node<T> tmp = p1.getNext();
+            Node<T> nextOfTmp = tmp.getNext();
+            p1.setNext(nextOfTmp); // bp and observe!
 
-        this.head = reversed;
-        this.last = null;
+            tmp.setNext(head);
+            head = tmp;
+        }
     }
 
     // recursively walk down to the last
