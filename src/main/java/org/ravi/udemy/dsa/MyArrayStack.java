@@ -44,7 +44,7 @@ public class MyArrayStack<T> implements TheStack<T> {
     @SuppressWarnings("unchecked")
     @Override
     public T peek() {
-        if (size == 0) {
+        if (isEmpty()) {
             throw new IllegalStateException("empty");
         }
         return (T) array[top];
