@@ -33,6 +33,6 @@ public class DynamicProgUtilsTest {
 
     @Test
     public void bottomUpFibonacciTest() {
-        verifyMany(value -> DynamicProgUtils.fibonacciBottomUp(value));
+        verifyMany(DynamicProgUtils::fibonacciBottomUp);
     }
 }

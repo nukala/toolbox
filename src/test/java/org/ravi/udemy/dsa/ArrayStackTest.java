@@ -24,6 +24,28 @@ public class ArrayStackTest {
     }
 
     @Test
+    public void popTooMany() {
+        stack = new MyArrayStack<>(2);
+
+        stack.push("California");
+        assertThat(stack.getSize())
+                .isEqualTo(1);
+
+        assertThat(stack.pop())
+                .isEqualTo("California");
+        int expSz = 0;
+        assertThat(stack.getSize())
+                .describedAs("After pop, size should be %d", expSz)
+                .isEqualTo(expSz);
+
+        assertThat(stack.isEmpty()).isTrue();
+        assertThatExceptionOfType(RuntimeException.class)
+                .isThrownBy(() -> stack.pop())
+                .withMessageContaining("empty")
+                .withNoCause();
+    }
+
+    @Test
     public void pushTooMany() {
         stack = new MyArrayStack<>(2);
         stack.push("Fremont");
