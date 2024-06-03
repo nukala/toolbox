@@ -48,7 +48,7 @@ public class MinHeapTest {
         assertThat(maxHeap.poll()).isNull();
     }
 
-    class StringWrapper {
+    private static class StringWrapper {
         private String str;
 
         public StringWrapper(String str) {
@@ -57,7 +57,7 @@ public class MinHeapTest {
     }
 
     @Test
-    public void minSWHeapWithNoComprator() {
+    public void minSWHeapWithNoComparator() {
         MyHeap<StringWrapper> min = MyHeap.MinHeap(null);
 
         min.add(new StringWrapper("z"));
