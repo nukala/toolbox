@@ -16,7 +16,7 @@ public class BinarySearchTreeTest {
     public void insertAndVerifyInOrder() {
         StringJoiner joiner = new StringJoiner(" ");
         tree.inOrder(n -> joiner.add(n.toString()));
-        System.out.printf("INORDER = [%s] %n", joiner.toString());
+        System.out.printf("INORDER = [%s] %n", joiner);
         assertThat(joiner.toString())
                 .as("inorder toString")
                 .contains("1 4 6 9 15 20 170");
@@ -62,7 +62,7 @@ public class BinarySearchTreeTest {
     public void breadthFirstCheck() {
         StringJoiner joiner = new StringJoiner(" ");
         tree.breadthFirst((Integer ii) -> joiner.add(ii.toString()));
-        System.out.printf("%s %n", joiner.toString());
+        System.out.printf("%s %n", joiner);
         assertThat(joiner.toString())
                 .as("bfsConsumption string verification")
                 .isEqualTo("9 4 20 1 6 15 170");
@@ -72,7 +72,7 @@ public class BinarySearchTreeTest {
     public void checkRecursiveBfs() {
         StringJoiner joiner = new StringJoiner(", ");
         tree.breadthFirstRecursive(i -> joiner.add(i.toString()));
-        //System.out.printf("%s %n", joiner.toString());
+//        System.out.printf("%s %n", joiner.toString());
         assertThat(joiner.toString())
                 .as("bfsConsumption string verification")
                 .isEqualTo("9, 4, 20, 1, 6, 15, 170");

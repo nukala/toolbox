@@ -7,10 +7,10 @@ import java.util.Comparator;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
-public class MinHeapTest {
+public class MyHeapTest {
 
     @Test
-    public void minHeapWithFewItems() {
+    public void pollMinHeapWithFewItems() {
         MyHeap<Integer> minHeap = MyHeap.MinHeap(null);
 
         minHeap.add(19);
@@ -23,7 +23,7 @@ public class MinHeapTest {
     }
 
     @Test
-    public void maxHeapWithFewItems() {
+    public void pollMaxHeapWithFewItems() {
         MyHeap<Integer> maxHeap = MyHeap.MaxHeap(null);
 
         maxHeap.add(13);
@@ -36,7 +36,7 @@ public class MinHeapTest {
     }
 
     @Test
-    public void maxHeapWithClearInBetween() {
+    public void pollMaxHeapWithClearInBetween() {
         MyHeap<Integer> maxHeap = MyHeap.MaxHeap(null);
 
         maxHeap.add(13);
@@ -49,29 +49,35 @@ public class MinHeapTest {
     }
 
     private static class StringWrapper {
+    /** simple wrapper with bare-minimum impls */
+    class SimpleWrapper {
         private String str;
 
-        public StringWrapper(String str) {
+        public SimpleWrapper(String str) {
             this.str = str;
+        }
+
+        public static Comparator<SimpleWrapper> comparator() {
+            return Comparator.comparing(sw -> sw.str);
         }
     }
 
     @Test
-    public void minSWHeapWithNoComparator() {
-        MyHeap<StringWrapper> min = MyHeap.MinHeap(null);
+    public void addMinObjHeapWithNoComparator() {
+        MyHeap<SimpleWrapper> min = MyHeap.MinHeap(null);
 
-        min.add(new StringWrapper("z"));
+        min.add(new SimpleWrapper("z"));
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> min.add(new StringWrapper("a")));
+                .isThrownBy(() -> min.add(new SimpleWrapper("a")));
     }
 
     @Test
-    public void maxSWHeapWithComparator() {
-        MyHeap<StringWrapper> swMax = MyHeap.MaxHeap(Comparator.comparing(sw -> sw.str));
+    public void pollMaxObjHeapWithComparator() {
+        MyHeap<SimpleWrapper> swMax = MyHeap.MaxHeap(SimpleWrapper.comparator());
 
-        swMax.add(new StringWrapper("A"));
-        swMax.add(new StringWrapper("z"));
-        swMax.add(new StringWrapper("o"));
+        swMax.add(new SimpleWrapper("A"));
+        swMax.add(new SimpleWrapper("z"));
+        swMax.add(new SimpleWrapper("o"));
 
         assertThat(swMax.poll().str)
                 .isEqualTo("z");

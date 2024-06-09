@@ -1,12 +1,16 @@
 package org.ravi.rutils.sams.dsa2;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.ravi.udemy.dsa.WorthLooking;
 
 import java.util.function.Consumer;
 
 // https://algorithmsandme.com/level-order-traversal-of-binary-tree/
 // TODO: I have serious problems with the way @see #insert is written up. Not sure if there is any code-coverage
-@SuppressWarnings({"unchecked", "WeakerAccess"}) // too many violators
+@SuppressWarnings({ "WeakerAccess"}) // too many violators
+@Getter
+@Setter
 public class BinarySearchTree<T> {
     private TreeNode<T> root;
 
@@ -14,7 +18,7 @@ public class BinarySearchTree<T> {
         root = null;
     }
 
-    @WorthLooking("DFS: depth first search - left->root->right")
+    @WorthLooking("DFS: depth first search(inOrder) - left->root->right")
     public static <T> void inOrder(TreeNode<T> node, Consumer<TreeNode<T>> consumer) {
         if ((node == null) || (consumer == null)) {
             return;
@@ -28,7 +32,7 @@ public class BinarySearchTree<T> {
         }
     }
 
-    @WorthLooking("DFS: depth first search - root->left->right")
+    @WorthLooking("DFS: depth first search(preOrder) - root->left->right")
     public static <T> void preOrder(TreeNode<T> node, Consumer<TreeNode<T>> consumer) {
         if ((node == null) || (consumer == null)) {
             return;
@@ -42,7 +46,7 @@ public class BinarySearchTree<T> {
         }
     }
 
-    @WorthLooking("DFS: depth first search -  left->right->root")
+    @WorthLooking("DFS: depth first search(postOrder) -  left->right->root")
     public static <T> void postOrder(TreeNode<T> node, Consumer<TreeNode<T>> consumer) {
         if ((node == null) || (consumer == null)) {
             return;
@@ -56,14 +60,13 @@ public class BinarySearchTree<T> {
         consumer.accept(node);
     }
 
-    public TreeNode<T> getRoot() {
-        return this.root;
-    }
-
-    public void setRoot(TreeNode<T> node) {
-        this.root = node;
-    }
-
+//    public TreeNode<T> getRoot() {
+//        return this.root;
+//    }
+//
+//    public void setRoot(TreeNode<T> node) {
+//        this.root = node;
+//    }
     public int height() {
         return height(this.getRoot());
     }

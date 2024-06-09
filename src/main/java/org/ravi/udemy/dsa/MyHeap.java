@@ -10,11 +10,7 @@ import java.util.function.Consumer;
 public class MyHeap<E> {
     private PriorityQueue<E> pq;
 
-    /**
-     * RNTODO - these two comparators call each other ... yucky implementation. needs improvement
-     */
     private static <T> Comparator<T> ascending(Comparator<T> baseComp) {
-
         return (o1, o2) -> {
             if (baseComp != null) {
                 return baseComp.compare(o1, o2);
@@ -23,20 +19,20 @@ public class MyHeap<E> {
                 return ((Comparable<T>) o1).compareTo(o2);
             }
 
-            throw new IllegalArgumentException("no base comparator AND not comparable");
+            throw new IllegalArgumentException("no base comparator AND not comparable o1");
         };
     }
 
     private static <T> Comparator<T> descending(Comparator<T> baseComp) {
         return (o1, o2) -> {
-            int ans = ascending(baseComp).compare(o1, o2);
-
-            if (ans < 0) {
-                return 1;
-            } else if (ans > 0) {
-                return -1;
+            if (baseComp != null) {
+                return baseComp.compare(o2, o1);
             }
-            return 0;
+            if (o2 instanceof Comparable<?>) {
+                return ((Comparable<T>) o2).compareTo(o1);
+            }
+
+            throw new IllegalArgumentException("no base comparator AND not comparable o2");
         };
     }
 
@@ -45,11 +41,11 @@ public class MyHeap<E> {
     }
 
     public static <T> MyHeap<T> MinHeap(Comparator<T> comparator) {
-        return new MyHeap(11, ascending(comparator));
+        return new MyHeap<T>(11, ascending(comparator));
     }
 
     public static <T> MyHeap<T> MaxHeap(Comparator<T> comparator) {
-        return new MyHeap(11, descending(comparator));
+        return new MyHeap<T>(11, descending(comparator));
     }
 
     public boolean add(E e) {
