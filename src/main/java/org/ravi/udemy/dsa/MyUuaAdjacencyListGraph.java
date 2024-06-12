@@ -10,6 +10,7 @@ import java.util.StringJoiner;
  * Undirected, Unweighted, Acyclical graph  AdjacencyList implementation
  *
  * @param <T>
+ * Video at: www.udemy.com/course/master-the-coding-interview-data-structures-algorithms/learn/lecture/12371828
  */
 // changes with video: parameters called node,
 public class MyUuaAdjacencyListGraph<T> implements TheGraph<T> {

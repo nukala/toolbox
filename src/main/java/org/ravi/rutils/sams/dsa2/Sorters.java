@@ -1,14 +1,7 @@
 package org.ravi.rutils.sams.dsa2;
 
-
 // book "Sams - Data Structures and Algorithms in Java, 2nd edition"
 public class Sorters {
-    private static <T> void swap(T[] array, int dest, int src) {
-        T temp = array[dest];
-        array[dest] = array[src];
-        array[src] = temp;
-    }
-
     // page 87 or 112
     public static <T extends Comparable<T>> void bubbleSort(T[] ary) {
         int outer, inner;
@@ -118,6 +111,15 @@ public class Sorters {
         T workspace[] = (T[]) new Object[array.length];
 
         recMergeSort(workspace, array, 0, array.length - 1);
+    }
+
+    public static <T> void swap(T[] array, int from, int to) {
+        if (array == null || from < 0 || from > array.length || to < 0 || to > array.length) {
+            return;
+        }
+        T tmp = array[from];
+        array[from] = array[to];
+        array[to] = tmp;
     }
 }
 

@@ -48,6 +48,7 @@ public class MyHeapTest {
         assertThat(maxHeap.poll()).isNull();
     }
 
+    /** simple wrapper with bare-minimum impls */
     private static class StringWrapper {
         private String str;
 

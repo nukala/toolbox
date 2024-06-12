@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -70,27 +71,27 @@ public class StreamTest {
                 new Product(44, "lemon"));
 
         List<String> names = productList.stream()
-                .map(Product::getName)
+                .map(Product::name)
                 .distinct()
                 .collect(Collectors.toList());
         assertThat(names)
                 .hasSize(5);
 
         String joined = productList.stream()
-                .map(Product::getName)
+                .map(Product::name)
                 .sorted()
                 .collect(Collectors.joining(", ", "[", "]"));
         logger.info("joined = :{}:", joined);
 
         IntSummaryStatistics intStats = productList.stream()
-                .map(Product::getName)
+                .map(Product::name)
                 .collect(Collectors.summarizingInt(String::length));
         assertThat(intStats.getCount())
                 .isEqualTo(6);
         logger.info("intStats=[{}]", intStats);
 
         Map<String, Set<String>> groupedMap = productList.stream()
-                .map(Product::getName)
+                .map(Product::name)
                 .collect(Collectors.groupingBy(StringUtils::upperCase, Collectors.toSet()));
         assertThat(groupedMap)
                 .containsKeys("BREAD", "POTATOES", "LEMON", "SUGAR");
@@ -159,22 +160,17 @@ public class StreamTest {
                 .forEach(e -> System.out.printf("%s %n", e));
     }
 
-    @SuppressWarnings({"unused"})
-    private static class Product {
-        final int count;
-        final String name;
+    @Test
+    public void rangeClosedTest() {
+        StringJoiner joiner = new StringJoiner(",");
+        IntStream.rangeClosed(1, 5)
+                .boxed()
+                .forEach((Integer ii) -> joiner.add(ii.toString()));
 
-        Product(int count, String name) {
-            this.count = count;
-            this.name = name;
-        }
+        assertThat(joiner.toString())
+                .isEqualTo("1,2,3,4,5");
+    }
 
-        public int getCount() {
-            return count;
-        }
-
-        public String getName() {
-            return name;
-        }
+    private record Product(int count, String name) {
     }
 }

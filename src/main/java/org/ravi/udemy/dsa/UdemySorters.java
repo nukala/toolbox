@@ -1,10 +1,12 @@
 package org.ravi.udemy.dsa;
 
 import com.google.common.base.Stopwatch;
+import org.ravi.rutils.sams.dsa2.Sorters;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.ravi.rutils.sams.dsa2.Sorters.swap;
 import static org.ravi.udemy.dsa.DsaArrays.doSplit;
 
 // sort routines learned at Udemy class
@@ -14,12 +16,6 @@ public class UdemySorters {
 
     private UdemySorters() {
         // cant instantiate
-    }
-
-    private static <T> void swap(T[] array, int from, int to) {
-        T tmp = array[from];
-        array[from] = array[to];
-        array[to] = tmp;
     }
 
     // changes: inner=outer+1 and sign of result
