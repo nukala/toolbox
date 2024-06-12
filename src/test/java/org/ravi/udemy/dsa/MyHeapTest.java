@@ -49,35 +49,33 @@ public class MyHeapTest {
     }
 
     private static class StringWrapper {
-    /** simple wrapper with bare-minimum impls */
-    class SimpleWrapper {
         private String str;
 
-        public SimpleWrapper(String str) {
+        public StringWrapper(String str) {
             this.str = str;
         }
 
-        public static Comparator<SimpleWrapper> comparator() {
+        public static Comparator<StringWrapper> comparator() {
             return Comparator.comparing(sw -> sw.str);
         }
     }
 
     @Test
     public void addMinObjHeapWithNoComparator() {
-        MyHeap<SimpleWrapper> min = MyHeap.MinHeap(null);
+        MyHeap<StringWrapper> min = MyHeap.MinHeap(null);
 
-        min.add(new SimpleWrapper("z"));
+        min.add(new StringWrapper("z"));
         assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> min.add(new SimpleWrapper("a")));
+                .isThrownBy(() -> min.add(new StringWrapper("a")));
     }
 
     @Test
     public void pollMaxObjHeapWithComparator() {
-        MyHeap<SimpleWrapper> swMax = MyHeap.MaxHeap(SimpleWrapper.comparator());
+        MyHeap<StringWrapper> swMax = MyHeap.MaxHeap(StringWrapper.comparator());
 
-        swMax.add(new SimpleWrapper("A"));
-        swMax.add(new SimpleWrapper("z"));
-        swMax.add(new SimpleWrapper("o"));
+        swMax.add(new StringWrapper("A"));
+        swMax.add(new StringWrapper("z"));
+        swMax.add(new StringWrapper("o"));
 
         assertThat(swMax.poll().str)
                 .isEqualTo("z");
