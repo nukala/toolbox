@@ -8,6 +8,19 @@ import java.util.Map;
  */
 public class DynamicProgUtils {
 
+    // https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms/learn/lecture/12409090#overview
+    // TODO: implement me
+    public static void houseRobber() {
+        throw new IllegalStateException("TODO: implement houseRobber DP");
+    }
+    // TODO: implement me
+    public static void buyAndSellStock() {
+        throw new IllegalStateException("TODO: implement buyAndSellStock DP");
+    }
+    public static void climbingStairs() {
+        throw new IllegalStateException("TODO: implement climbingStairs DP");
+    }
+    // https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms/learn/lecture/12409090#overview
     // TODO: implement me
     public static int fibonacci(int n) {
         throw new IllegalStateException("TODO: implement fibonacci DP");

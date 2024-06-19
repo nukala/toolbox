@@ -33,7 +33,14 @@ public class MergeIntervals {
 
     public static void main(String[] args) {
         //Input: { { 14, 16 }, { 24, 60 }, { 2, 15 }, { 1, 2 }, { 8, 10 }, { 72, 83 } }
-        Pair[] pairs = {new Pair(14, 16), new Pair(24, 60), new Pair(2, 15), new Pair(1, 2), new Pair(8, 10), new Pair(72, 83)};
+        Pair[] pairs/* = {new Pair(14, 16), new Pair(24, 60), new Pair(2, 15), new Pair(1, 2), new Pair(8, 10), new Pair(72, 83)}*/;
+        pairs = new Pair[]{
+                new Pair(1, 6),
+                new Pair(4, 8),
+                new Pair(15, 17),
+                new Pair(15, 22),
+                new Pair(9, 14)
+        };
 
         Arrays.sort(pairs);
 
@@ -78,8 +85,8 @@ public class MergeIntervals {
     //     return null;
     // }
     static class Pair implements Comparable<Pair> {
-        private Integer left;
-        private Integer right;
+        private final int left;
+        private final int right;
 
         Pair(int left, int right) {
             this.left = left;
@@ -87,7 +94,8 @@ public class MergeIntervals {
         }
 
         public int compareTo(Pair other) {
-            return this.left.compareTo(other.left);
+            //return this.left.compareTo(other.left);
+            return Integer.compare(this.left, other.left);
         }
     }
 

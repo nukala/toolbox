@@ -59,7 +59,7 @@ public class BinarySearchTreeTest {
     }
 
     @Test
-    public void breadthFirstCheck() {
+    public void checkIterativeBfs() {
         StringJoiner joiner = new StringJoiner(" ");
         tree.breadthFirst((Integer ii) -> joiner.add(ii.toString()));
         System.out.printf("%s %n", joiner);
@@ -134,4 +134,10 @@ public class BinarySearchTreeTest {
         assertThat(tree.remove(20)).isFalse();
         assertThat(tree.lookup(20)).isFalse();
     }
+
+    // TODO using video's example 9, 4, 20, 1, 6, 15, 170
+    // inorder=[1,4,6,9,14,20,170]
+    // preorder=[9,4,1,6,20,15,170]
+    // postorder=[1,6,4,15,170,20,9]
+    //https://medium.com/@wendellrodrigues89/depth-first-search-traversal-trees-96169103d447
 }
