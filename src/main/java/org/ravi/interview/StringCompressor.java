@@ -29,7 +29,6 @@ public class StringCompressor {
     }
 
     /** compress by reducing repeating chars to their number. So aaabbbccc = a3b3c3 and so on */
-    @WorthLooking("pay attention to the last character, it should not be dangling")
     public static String compress(String data) {
         if (StringUtils.isEmpty(data)) {
             return StringUtils.EMPTY;
@@ -50,8 +49,9 @@ public class StringCompressor {
                 count++;
             }
         }
-
-        if (count > 0) {
+        @WorthLooking("pay attention to the last character, it should not be dangling")
+        boolean remaining = count > 0;
+        if (remaining) {
             sb.append(doCompress(oldChar, count));
         }
 

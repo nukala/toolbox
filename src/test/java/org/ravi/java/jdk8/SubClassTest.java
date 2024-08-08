@@ -61,6 +61,7 @@ class MountainBike extends Bicycle {
 
 public class SubClassTest {
     @WorthLooking("constructors cannot be invoked from subclass user if un-overridden in subclass")
+    // RNTODO - add more detail here!
     @Test
     public void constructorTest() {
         MountainBike mb3 = new MountainBike(5, 3, 2 ,1);

@@ -84,8 +84,8 @@ class Person {
     }
 }
 
-class MyHashSet<E> extends HashSet<E> {
-    public MyHashSet() {
+class IdentityHashSet<E> extends HashSet<E> {
+    public IdentityHashSet() {
         super();
         System.out.println("Constructor called for " + System.identityHashCode(this));
     }
@@ -189,7 +189,7 @@ public class LambdaExpressionTest {
 
     @Test
     public void ctorRef() {
-        Supplier<Collection> supplier = MyHashSet::new;
+        Supplier<Collection> supplier = IdentityHashSet::new;
         Set<Person> set = (Set<Person>) Person.transferElements(
                 roster,
                 supplier
