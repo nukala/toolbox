@@ -38,6 +38,7 @@ public class ThreadedAccountTest {
 
         SERVICE.shutdown();
         System.out.println("Final Balance: " + bankAccount.getBalance());
+	// assert Double comparison with offset
         assertThat(bankAccount.getBalance())
                 .as("After all those loops inside an executor")
                 .as("sometimes -- running many tests or mvn in verbose mode also fails. ")

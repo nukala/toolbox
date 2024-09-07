@@ -6,11 +6,15 @@ Discussion
 1. Interesting code that I encountered (in various blogs/websites)
 2. Some problems that got asked at Interviews (I think most of the  interviewers' details have been removed)
 3. Code that I would like to ask my candidates.
+4. Also some of them started as tutorials/exercises (leetcode, udemy, etc.)
 
 I tried to convert most of them into a valid-junit test that asserts (mostly assertj).
 Some tests may look excessive, but they help me with debugging.
 
-
+To run pure JDK code (no libraries) or its equivalent
+```
+java -classpath ./target/test-classes org.ravi.udemy.jdk8.dates.LocalTimeExample
+```
 
 -----
 
