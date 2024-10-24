@@ -14,12 +14,10 @@ public class Client123 implements Interface1,Interface2,Interface3 {
 
     @WorthLooking("resolves to this class first, then sub-classes, finally default")
     public static void main(String[] args) {
-
         Client123 client123 = new Client123();
+
         client123.methodA(); // resolves to child Interface Implementation
         client123.methodB();
         client123.methodC();
-
-
     }
 }

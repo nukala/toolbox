@@ -1,6 +1,5 @@
 package org.ravi.leetcode;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Assert;
 import org.junit.Test;
 

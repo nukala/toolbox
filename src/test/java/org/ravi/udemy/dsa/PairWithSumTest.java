@@ -27,7 +27,8 @@ public class PairWithSumTest {
 
     @Test
     public void pairWithDuplicates() {
-        assertThat(hasPairWithSum(new int[]{1, 2, -3, 4, 4}, 8))
+        assertThat(hasPairWithSum(new int[]{1, 2, -3, 4, 4},
+                8))
                 .as("pair with dups")
                 .isTrue();
     }
@@ -40,7 +41,7 @@ public class PairWithSumTest {
 
     @Test
     public void blankArrayIsFalse() {
-        assertThat(hasPairWithSum(new int[1], 9))
+        assertThat(hasPairWithSum(new int[0], 9))
                 .isFalse();
     }
 }

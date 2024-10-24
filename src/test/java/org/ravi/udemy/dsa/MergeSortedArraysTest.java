@@ -18,7 +18,7 @@ public class MergeSortedArraysTest {
 
     @Test
     public void removeDupsTest() {
-        int nums[] = new int[]{1, 1, 3, 4, 4, 5};
+        int[] nums = new int[]{1, 1, 3, 4, 4, 5};
         int nonDupLen = removeDuplicatesAndReturnSize(nums);
         assertThat(nonDupLen)
                 .isEqualTo(4);

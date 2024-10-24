@@ -1,17 +1,17 @@
 package org.ravi.leetcode;
 
+
+import org.ravi.udemy.dsa.WorthLooking;
+
+import java.util.Arrays;
+
 /**
  * <a href="https://leetcode.com/discuss/interview-question/operating-system/4417164/Basic-to-Advanced-Array-Questions-with-Techniques">array questions with techniques</a>
  * <p>
  * Solutions described there
  * <p>
  * First solve for ints and then genericize later
- **/
-
-import org.ravi.udemy.dsa.WorthLooking;
-
-import java.util.Arrays;
-
+ */
 public class LeetArrays {
     public static int findMax(int[] array) {
         if ((array == null) || (array.length == 0)) {
@@ -19,10 +19,8 @@ public class LeetArrays {
         }
         return Arrays.stream(array)
                 .boxed()
-                .max((a, b) -> a.compareTo(b))
-                .orElseThrow(() -> {
-                    throw new IllegalArgumentException("no maximum found");
-                });
+                .max(Integer::compareTo)
+                .orElseThrow(() -> new IllegalArgumentException("no maximum found"));
     }
 
     @WorthLooking("Watch for array boundaries and pay attention to mid point")
@@ -32,7 +30,7 @@ public class LeetArrays {
         }
 
         int len = array.length, numSwaps = 0;
-        for (int left = 0, right = len - 1; right > left;
+        for (int left = 0, right = len - 1; left <= right;
              left++, right--) {
             int tmp = array[left];
             array[left] = array[right];

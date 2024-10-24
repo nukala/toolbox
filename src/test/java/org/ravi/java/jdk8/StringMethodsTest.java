@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class StringMethodsTest {
     @Test
+    @SuppressWarnings("DataFlowIssue") // for removing `repl` var
     public void fullSubstrings() {
         String sub = "abc";
         String repl = "";

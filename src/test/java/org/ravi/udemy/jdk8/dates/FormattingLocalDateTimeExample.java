@@ -5,13 +5,13 @@ package org.ravi.udemy.jdk8.dates;
 import org.ravi.udemy.dsa.WorthLooking;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 public class FormattingLocalDateTimeExample {
 
 
     public static void parseLocalDateTime() {
-
         String dateTime = "2018-04-18T14:33:33";
         LocalDateTime localDateTime = LocalDateTime.parse(dateTime);
         System.out.println(localDateTime);
@@ -31,23 +31,35 @@ public class FormattingLocalDateTimeExample {
 
         String dateTime3 = "2018-04-18#14|33|33";
         @WorthLooking("For reserved characters - use single quote \\'")
-        DateTimeFormatter dateTimeFormatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd'#'HH|mm|ss");
+        DateTimeFormatter dateTimeFormatter3 = DateTimeFormatter.ofPattern("yyyy-MM-dd'#'HH|mm|ss");
         System.out.println(dateTime3 + " - custom date time format: "
-                + LocalDateTime.parse(dateTime2, dateTimeFormatter1));
+                + LocalDateTime.parse(dateTime3, dateTimeFormatter3));
     }
 
     public static void formatLocalDateTime() {
-
         DateTimeFormatter dateTimeFormatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd'abc'HH|mm|ss");
         LocalDateTime localDateTime = LocalDateTime.now();
         String convertedDate = localDateTime.format(dateTimeFormatter1);
         System.out.println("convertedDate : " + convertedDate);
     }
 
+    static void parseHghaiSample() {
+        String dtStr = "2014-02-13T20:48:57.000+0000";
+
+        //System.out.println("substring23=[" + dtStr.substring(23));
+        DateTimeFormatter fmt = DateTimeFormatter
+                .ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSxxxx");
+        LocalDateTime ldt = LocalDateTime.parse(dtStr, fmt);
+        System.out.println("str=[" + dtStr + "], ldt=[" + ldt + "]");
+        System.out.println("zdt.ny=[" + ldt.atZone(ZoneId.of("America/New_York")) + "]");
+        System.out.println("zdt.la=[" + ldt.atZone(ZoneId.of("America/Los_Angeles")) + "]");
+    }
 
     public static void main(String[] args) {
         parseLocalDateTime();
-        System.out.println("===");
+        System.out.println("=== HGHAI ==");
+        parseHghaiSample();
+        System.out.println("=== FORMAT ==");
         formatLocalDateTime();
     }
 }

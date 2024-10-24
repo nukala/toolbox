@@ -71,6 +71,7 @@ public class MyDoublyLinkedList<T> implements TheLinkedList<T> {
     }
 
     @WorthLooking("traverseToIndex helper for searching/removing/adding")
+    // RNTODO - use recursion?
     private DblNode<T> traverseToIndex(int index) {
         if ((index < 0) || (index > getLength())) {
             throw new RuntimeException(String.format("Bad index: index=%d length=%d", index, length));

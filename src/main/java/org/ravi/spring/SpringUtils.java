@@ -1,5 +1,9 @@
 package org.ravi.spring;
 
+import java.lang.management.ThreadInfo;
+import java.lang.management.ThreadMXBean;
+import java.lang.management.ManagementFactory;
+import java.util.Formatter;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -48,5 +52,33 @@ public class SpringUtils {
 
 		logger.warn("dumping all the bean names and classes=\n{}", Joiner.on("\n\t").join(namesAndTypes(ctxt)));
 		return ret;
+	}
+
+	// threadutils or cacheutils
+	public static String getStackTraceStr() {
+		Formatter formatter = new Formatter(new StringBuilder(8192));
+		formatter.format("%n %s %n", "*******Thread Dump Start*******");
+		ThreadMXBean threadBean = ManagementFactory.getThreadMXBean();
+
+		//long threadIds[] = threadBean.getAllThreadIds();
+
+		ThreadInfo[] threadInfos = threadBean.dumpAllThreads(true, true);
+		for (ThreadInfo threadInfo : threadInfos) {
+			formatter.format("%s: %s%n", "Thread name", threadInfo.getThreadName());
+			formatter.format("%s: %s%n", "Wait time", threadInfo.getWaitedTime());
+			formatter.format("%s: %s%n", "Thread state", threadInfo.getThreadState());
+			if (threadInfo.getLockName() != null) {
+				formatter.format("%s: %s%n", "Waiting to acquire lock:", threadInfo.getLockName());
+				formatter.format("%s: %s%n", "Lock held by:", threadInfo.getLockOwnerName());
+			}
+			formatter.format("%s: ", "Thread Stack trace:");
+			for (StackTraceElement traceElement : threadInfo.getStackTrace()) {
+				formatter.format("\t%s%n", traceElement);
+			}
+			formatter.format("%s %n", "----------------------");
+		}
+		formatter.format("%n%s %n", "*******Thread Dump End*******");
+
+		return formatter.toString();
 	}
 }

@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 // devs=25-30 total=300/350
 // book=reserve-conference-room or similar
-public class BookIntervals {
+public class BookIntervalsTest {
     private void doCheck(MyIntervals site, int start, int end, boolean exp) {
         assertThat(site.reserve(start, end))
                 .as(String.format("(%d, %d) = %b", start, end, exp))

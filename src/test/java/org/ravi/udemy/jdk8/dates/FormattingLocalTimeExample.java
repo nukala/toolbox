@@ -25,12 +25,12 @@ public class FormattingLocalTimeExample {
         //h-> 12 hour time format
         String time1 = "13*00";
         @WorthLooking("HH is 24 hour format, hh (lower) is 12 hour")
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH*mm");
-        LocalTime localTime2 = LocalTime.parse(time1, dateTimeFormatter);
+        DateTimeFormatter dateTimeFormatter1 = DateTimeFormatter.ofPattern("HH*mm");
+        LocalTime localTime2 = LocalTime.parse(time1, dateTimeFormatter1);
         System.out.println("localTime2 : " + localTime2);
 
         String time2 = "13*00*33";
-        DateTimeFormatter dateTimeFormatter1 = DateTimeFormatter.ofPattern("HH*mm*ss");
+        DateTimeFormatter dateTimeFormatter2 = DateTimeFormatter.ofPattern("HH*mm*ss");
         LocalTime localTime3 = LocalTime.parse(time2, dateTimeFormatter1);
         System.out.println("localTime3 : " + localTime3);
 

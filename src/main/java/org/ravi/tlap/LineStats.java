@@ -31,7 +31,7 @@ public class LineStats {
 
         for (char ch : line.toCharArray()) {
             if (Character.isWhitespace(ch)) {
-                if (sb.length() > 0) {
+                if (!sb.isEmpty()) {
                     stats.wordFound(sb.toString(), numVowels);
                     sb.setLength(0); // reset sb
                     numVowels = 0;
@@ -46,7 +46,7 @@ public class LineStats {
             }
         }
 
-        if (sb.length() > 0) {
+        if (!sb.isEmpty()) {
             stats.wordFound(sb.toString(), numVowels);
         }
 

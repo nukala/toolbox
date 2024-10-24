@@ -182,8 +182,9 @@ public class DsaArrays {
             if (othersSet.contains(number)) {
                 return true;
             } else {
-                // guard against underflow: Math.subtractExact() and lack of exception
-                othersSet.add(sum - number);
+                // guard against underflow
+                int otherPart = Math.subtractExact(sum, number);
+                othersSet.add(otherPart);
             }
         }
         return false;
@@ -214,12 +215,12 @@ public class DsaArrays {
     @WorthLooking("contains between two arrays using leftSet O(n)")
     static boolean containsImproved(char[] left, char[] right) {
         Set<Character> leftSet = new HashSet<>();
-        for (int i = 0; i < left.length; i++) {
-            leftSet.add(left[i]);
+        for (char c : left) {
+            leftSet.add(c);
         }
 
-        for (int j = 0; j < right.length; j++) {
-            if (leftSet.contains(right[j])) {
+        for (char c : right) {
+            if (leftSet.contains(c)) {
                 return true;
             }
         }

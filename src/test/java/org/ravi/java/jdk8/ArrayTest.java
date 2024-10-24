@@ -22,6 +22,7 @@ public class ArrayTest {
 
     @WorthLooking("arrays are passed as reference, hence mutable in methods")
     public <T> void clear_Array(T[] ary, T replacement) {
+        // ary = (T[])new Object[ary.length];
         for (int i = 0; i < ary.length; i += 2) {
             ary[i] = replacement;
         }

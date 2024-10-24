@@ -70,7 +70,7 @@ public class Strings {
     // From "ABCD": A, AB, ABC, ABCD, B, BC, BCD, C, CD, D
     @WorthLooking("substrings from a big str O(n^2) add-to-list-in-inner-loop")
     public static List<String> substrings(String input) {
-        if ((input == null) || (input.length() == 0)) {
+        if (input == null || input.isEmpty()) {
             return Lists.newArrayList(input);
         }
         List<String> list = new ArrayList<>();

@@ -87,7 +87,7 @@ public class JseeHelpersTest {
         // next greater key-value
         System.out.printf("Ceiling(%d): equal_or_greater is [%s]%n", key, map.ceilingEntry(key));
         // greater than or equal to number
-        key = 63;
+        key = 64;
         System.out.printf("Ceiling(%d): equal_or_greater is [%s]%n", key, map.ceilingEntry(key));
 
         // slightly below

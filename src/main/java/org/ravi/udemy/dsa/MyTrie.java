@@ -35,7 +35,7 @@ public class MyTrie implements TheTrie {
 
     @WorthLooking("recursive add -- pay attention to target of recursion use child.add ...")
     public TheTrie add(String str) {
-        if (str.length() == 0) {
+        if (str == null || str.isEmpty()) {
             return this;
         }
         char firstChar = str.charAt(0);
