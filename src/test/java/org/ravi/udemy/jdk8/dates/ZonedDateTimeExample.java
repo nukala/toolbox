@@ -3,9 +3,33 @@ package org.ravi.udemy.jdk8.dates;
 import org.ravi.udemy.dsa.WorthLooking;
 
 import java.time.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 
 // lab96 and 97
 public class ZonedDateTimeExample {
+    private static Map<String, ZoneId> map = new HashMap<>() {{
+        put("New_York", ZoneId.of("America/New_York"));
+        put("Chicago", ZoneId.of("America/Chicago"));
+        put("Denver ", ZoneId.of("America/Denver"));
+        put("Los_Angeles", ZoneId.of("America/Los_Angeles"));
+        put("Sitka", ZoneId.of("America/Sitka"));
+        put("Hawaii", ZoneId.of("US/Hawaii"));
+        put("Kolkata", ZoneId.of("Asia/Kolkata"));
+    }};
+
+    static void ofZones(Function<ZoneId, String> function) {
+        if (function != null) {
+            map.keySet()
+                    .forEach((k) -> {
+                        //System.out.println(k + "=" + function.apply(map.get(k)));
+                        String oth = function.apply(map.get(k));
+                        System.out.printf("%-11s = %s[%s]%n", k, oth, map.get(k).toString());
+                    });
+        }
+    }
+
     public static void main(String[] args) {
         ZonedDateTime zonedDateTime = ZonedDateTime.now();
         System.out.println("zdt=" + zonedDateTime);
@@ -16,29 +40,25 @@ public class ZonedDateTimeExample {
                 //+ ", zioOfPdt=" + ZoneId.of("PDT")
         );
 
-        /*
-        System.out.println("All zoneIds = " + ZoneId.getAvailableZoneIds());
-        ZoneId.getAvailableZoneIds().stream()
-                .filter(s -> {return !s.contains("/") && s.length() <= 6;})
-                .forEach(System.out::println);
-        ZoneId.getAvailableZoneIds().stream()
-                // numerous -- not just US
-                //.filter(s -> s.startsWith("America/"))
+//        System.out.println("All zoneIds = " + ZoneId.getAvailableZoneIds());
+//        ZoneId.getAvailableZoneIds().stream()
+//                .filter(s -> {
+//                    return !s.contains("/") && s.length() <= 6;
+//                })
+//                .forEach(System.out::println);
+//        ZoneId.getAvailableZoneIds().stream()
+//                // numerous -- not just US
+//                //.filter(s -> s.startsWith("America/"))
+//
+//                //.filter(s -> s.length() <= 4)
+//                .filter(s -> s.toUpperCase().contains("US/"))
+//                .forEach(System.out::println);
+//        System.out.println("num zoneids=" + ZoneId.getAvailableZoneIds().size());
 
-                //.filter(s -> s.length() <= 4)
-                .filter(s -> s.toUpperCase().contains("US/"))
-                .forEach(System.out::println);
-        System.out.println("num zoneids=" + ZoneId.getAvailableZoneIds().size());
-                */
 
-        // CST does not work!
-        System.out.println("ExT New_York    time=" + ZonedDateTime.now(ZoneId.of("America/New_York")));
-        System.out.println("CxT Chicago     time=" + ZonedDateTime.now(ZoneId.of("America/Chicago")));
-        System.out.println("MxT Denver      time=" + ZonedDateTime.now(ZoneId.of("America/Denver")));
-        System.out.println("PxT Los_Angeles time=" + ZonedDateTime.now(ZoneId.of("America/Los_Angeles")));
-        System.out.println("?xT Sitka       time=" + ZonedDateTime.now(ZoneId.of("America/Sitka")));
-        System.out.println("?xT Hawaii      time=" + ZonedDateTime.now(ZoneId.of("US/Hawaii")));
-
+        ofZones((z) -> {
+            return ZonedDateTime.now(z).toString();
+        });
 
         System.out.println("===");
         System.out.println("zdt using clock with zoneId="
@@ -62,5 +82,15 @@ public class ZonedDateTimeExample {
         @WorthLooking("only offset ... no conversion, no zone!")
         OffsetDateTime offsetDateTime = localDateTime.atOffset(ZoneOffset.ofHours(-4));
         System.out.println("offsetDateTime still in PxT (-4=NYC)=" + offsetDateTime);
+
+        System.out.println("==== converted to other TZs === ");
+        @WorthLooking("convert to different timezone")
+        Function<ZoneId, String> convertToTz = (z) -> {
+            LocalDateTime ldt = LocalDateTime.now();
+            Instant inst = ldt.atZone(ZoneId.systemDefault()).toInstant();
+            return inst.atZone(z).toLocalDateTime().toString();
+        };
+        ofZones(convertToTz);
+        System.out.println("==");
     }
 }

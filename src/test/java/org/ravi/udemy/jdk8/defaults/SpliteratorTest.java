@@ -55,6 +55,11 @@ public class SpliteratorTest {
                 .isEqualTo(64);
         assertThat(third.estimateSize()).describedAs("split2 from first")
                 .isEqualTo(64);
+
+        // `first` gets split multiply ... so its sizes are different
+        assertThat(spliterator.estimateSize())
+                .describedAs("remaining with parent, after all subsplits")
+                .isEqualTo(256);
     }
 
     static class Bike {
