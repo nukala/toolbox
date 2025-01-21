@@ -349,3 +349,5 @@ gradle-app.setting
 **/.idea
 **/*.log
 todo*
+# - by RAvi
+.ghsvd
