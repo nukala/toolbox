@@ -38,7 +38,7 @@ public class MyTree<T extends Comparable<T>> implements TheSearchTree<T> {
         return root != null;
     }
 
-    private void recursiveBft(TheQueue<TreeNode<T>> queue, Consumer<T> consumer) {
+    private void recursiveBfs(TheQueue<TreeNode<T>> queue, Consumer<T> consumer) {
         if (queue.isEmpty()) {
             return;
         }
@@ -52,7 +52,7 @@ public class MyTree<T extends Comparable<T>> implements TheSearchTree<T> {
         }
 
         consumer.accept(currentNode.getValue());
-        recursiveBft(queue, consumer);
+        recursiveBfs(queue, consumer);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class MyTree<T extends Comparable<T>> implements TheSearchTree<T> {
         TheQueue<TreeNode<T>> queue = new MyLinkedQueue<>();
         queue.enqueue(root);
 
-        recursiveBft(queue, consumer);
+        recursiveBfs(queue, consumer);
     }
 
     @Override
