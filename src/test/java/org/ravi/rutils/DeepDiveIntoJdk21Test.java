@@ -29,6 +29,16 @@ public class DeepDiveIntoJdk21Test {
     }
 
     @Test
+    public void floatingPointIncr() {
+        var fval = 8933.456F;
+        // round about way to verify ++ behavior on floats
+        fval ++;
+        System.out.println("fval=[" + fval + "]");
+        assertThat(Float.valueOf(fval).intValue() == 8934)
+                .isTrue();
+    }
+
+    @Test
     public void varTest() {
         var foo = new SomeImpl();
 
@@ -50,4 +60,5 @@ public class DeepDiveIntoJdk21Test {
 
         // not yet in corretto21 - 24jun05 var p3 = p2 with { age = 11 };
     }
+
 }

@@ -261,7 +261,7 @@ public class Chapter5 {
         assertThatExceptionOfType(RuntimeException.class)
                 .isThrownBy(() ->
                         Dish.menu().stream()
-                                .filter(dish -> dish.getDishType() == Dish.DishType.NON_EXISTANT)
+                                .filter(dish -> dish.getDishType() == Dish.DishType.UNKNOWN)
                                 .max(comparing(Dish::getCalories))
                                 .orElseThrow(() -> new RuntimeException("empty non-existant"))
                 )

@@ -56,5 +56,5 @@ public class Dish {
         return name + "." + getCalories();
     }
 
-    public enum DishType {MEAT, FISH, OTHER, NON_EXISTANT}
+    public enum DishType {MEAT, FISH, OTHER, UNKNOWN;}
 }
