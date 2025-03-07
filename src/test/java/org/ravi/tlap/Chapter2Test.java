@@ -5,7 +5,9 @@ import org.ravi.tlap.DecodeSpecial.Mode;
 import org.ravi.udemy.dsa.WorthLooking;
 
 import java.util.Formatter;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BiConsumer;
 import java.util.function.IntSupplier;
 import java.util.stream.IntStream;
 
@@ -18,7 +20,7 @@ public class Chapter2Test {
         final int limit = 5;
         AtomicInteger max = new AtomicInteger(limit);
         @WorthLooking("Use limit if supplier is un-bounded")
-        IntSupplier supplier = () -> max.decrementAndGet();
+        IntSupplier supplier = max::decrementAndGet;
 
         StringBuilder sb = new StringBuilder();
         try (Formatter fmtr = new Formatter(sb)) {
@@ -33,6 +35,7 @@ public class Chapter2Test {
                     });
         }
         System.out.printf("%s", sb);
+        // assertions need to be fixed or move inside loop
         assertThat(sb.toString()).contains("#####");
         assertThat(sb.toString()).contains("###");
         assertThat(sb.toString()).doesNotContain("######");
@@ -55,5 +58,16 @@ public class Chapter2Test {
 
         assertThat(Mode.PUNCTUATION.convert(1)).isEqualTo('!');
         assertThat(Mode.PUNCTUATION.convert(5)).isEqualTo(' ');
+    }
+
+    @Test
+    public void intSupplierFakeTest() { // to see how supplier works in this case
+        Random random = new Random();
+        IntSupplier newRandom = () -> random.nextInt(54);
+        BiConsumer<Integer, Integer> soutBi = (i, r) ->
+            System.out.printf("BI: #%d rand=%d %n", i, r);
+
+        IntStream.range(0, 5)
+                .forEach((i) -> soutBi.accept(i, newRandom.getAsInt()));
     }
 }
