@@ -35,7 +35,6 @@ public class Chapter2Test {
                     });
         }
         System.out.printf("%s", sb);
-        // assertions need to be fixed or move inside loop
         assertThat(sb.toString()).contains("#####");
         assertThat(sb.toString()).contains("###");
         assertThat(sb.toString()).doesNotContain("######");
@@ -64,10 +63,10 @@ public class Chapter2Test {
     public void intSupplierFakeTest() { // to see how supplier works in this case
         Random random = new Random();
         IntSupplier newRandom = () -> random.nextInt(54);
-        BiConsumer<Integer, Integer> soutBi = (i, r) ->
+        BiConsumer<Integer, Integer> biConsumer = (i, r) ->
             System.out.printf("BI: #%d rand=%d %n", i, r);
 
         IntStream.range(0, 5)
-                .forEach((i) -> soutBi.accept(i, newRandom.getAsInt()));
+                .forEach(i -> biConsumer.accept(i, newRandom.getAsInt()));
     }
 }
