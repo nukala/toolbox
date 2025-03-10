@@ -30,8 +30,8 @@ public class LeetArrays {
         }
 
         int len = array.length, numSwaps = 0;
-        for (int left = 0, right = len - 1; left <= right;
-             left++, right--) {
+        for (int left = 0, right = len - 1;
+	     left <= right; left++, right--) {
             int tmp = array[left];
             array[left] = array[right];
             array[right] = tmp;
