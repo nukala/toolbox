@@ -3,7 +3,6 @@ package org.ravi.revisited;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.StringJoiner;
 import java.util.function.Function;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,14 +10,11 @@ import static org.ravi.udemy.dsa.Strings.permutations;
 
 // Tests of code that was inspired from javarevisited.blogspot.com
 public class StringPermutationTest {
-    private static Function<String, List<String>> permuter = input -> {
+    private static final Function<String, List<String>> permuter = input -> {
         List<String> list = permutations(input);
 
-        StringJoiner joiner = new StringJoiner(", ");
         List<String> combinations = permutations(input);
-        combinations.stream()
-                .forEach(s -> joiner.add(s));
-        System.out.printf("[%s]: [%s] %n", input, joiner);
+        System.out.printf("toString [%s]: %s%n", input, combinations);
         return list;
     };
 

@@ -20,7 +20,6 @@ import java.util.function.Supplier;
 
 enum Gender {MALE, FEMALE};
 
-@WorthLooking("An interface can differentiate by parameters also")
 interface HelloWorld {
     public void greet();
 
@@ -109,7 +108,6 @@ class Calculator {
     public static void main(String... args) {
 
         Calculator myApp = new Calculator();
-        @WorthLooking("Lambda blocks can contain other code. Blocks are expressions")
         IntegerMath addition = (a, b) -> {
             int answer = a + b;
             System.out.printf("LAMBDA-block> %d + %d = %d%n", a, b, answer);

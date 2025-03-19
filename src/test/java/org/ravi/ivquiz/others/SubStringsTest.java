@@ -1,6 +1,5 @@
 package org.ravi.ivquiz.others;
 
-import com.google.common.base.Joiner;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
@@ -16,7 +15,7 @@ public class SubStringsTest {
         String input = "ABCD";
 
         List<String> list = substrings(input);
-        System.out.printf("[%s]%n", Joiner.on(", ").join(list));
+        System.out.printf("input=[%s], substrings=%s %n", input, list);
 
         Assertions.assertThat(list)
                 .containsAll(newArrayList("A", "AB", "ABC", "ABCD", "B", "BC", "BCD", "C", "CD", "D"));

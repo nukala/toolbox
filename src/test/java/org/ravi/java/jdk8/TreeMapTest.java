@@ -22,7 +22,7 @@ public class TreeMapTest {
 
         System.out.printf(">>> %s <<< %n", map);
 
-        @WorthLooking("pay attention to xx_yy")
+        @WorthLooking("pay attention to xx_yy messages")
         int key = 30;
         // next greater key-value
         System.out.printf("Ceiling(%d): equal_or_greater is [%s]%n", key, map.ceilingEntry(key));

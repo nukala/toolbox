@@ -17,6 +17,7 @@ public class ExpiringMapTest {
     private ExpiringMap<Integer, String> expMap = new ExpiringHashMap<>();
 
     @WorthLooking("broken for short durations")
+    // TODO evaluate using LockSupport.parkNanos or equivalent
     private static void napMillis(int duration) {
         long then = System.currentTimeMillis();
         try {

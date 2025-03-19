@@ -34,6 +34,7 @@ public class LeetProblems {
             return false;
         }
 
+	// as a stack!
         Deque<Character> deque = new ArrayDeque<>();
         for (char ch : s.toCharArray()) {
             StringBuilder sb = new StringBuilder();

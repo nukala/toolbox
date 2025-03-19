@@ -110,12 +110,6 @@ public class MyLinkList<T> implements TheLinkedList<T> {
         throw new RuntimeException("TODO - printReverse");
     }
 
-    @Override
-    public void reverseRecursive() {
-        this.head = reverseRecursive(head);
-        this.last = null;
-    }
-
     private void initLast() {
         if (last == null) {
             Node<T> tmpLast = head;
@@ -151,6 +145,12 @@ public class MyLinkList<T> implements TheLinkedList<T> {
         }
 
         return theNode;
+    }
+
+    @Override
+    public void reverseRecursive() {
+        this.head = reverseRecursive(head);
+        this.last = null;
     }
 
     @WorthLooking("recursive using a helper")
