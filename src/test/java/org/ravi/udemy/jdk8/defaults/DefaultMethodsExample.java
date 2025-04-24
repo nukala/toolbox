@@ -12,21 +12,22 @@ import java.util.function.Supplier;
 public class DefaultMethodsExample {
     @WorthLooking("Each supplier invocation returns a new version!")
     static Supplier<List<String>> namesSupplier = () -> Arrays.asList("Adam", "Jenny", "Alex", "Mike", "Sophia", "Dan", "Zack", "Dave");
+
     public static void main(String[] args) {
         // prior art
         List<String> namesList = namesSupplier.get();
         Collections.sort(namesList);
-        System.out.println("Old style with Collections.sort=" + namesList);
+        System.out.printf("%s: Old style with Collections.sort=%s%n", Integer.toHexString(namesList.hashCode()), namesList);
 
         namesList = namesSupplier.get();
-        System.out.println("  After sorting another get=" + namesList);
+        System.out.printf("%s: After sorting another get=%s%n", Integer.toHexString(namesList.hashCode()), namesList);
 
         // using default impl
         namesList.sort(Comparator.naturalOrder());
-        System.out.println("using default method List.sort=" + namesList);
+        System.out.printf("%s: using default method List.sort=%s%n", Integer.toHexString(namesList.hashCode()), namesList);
 
         namesList = namesSupplier.get();
         namesList.sort(Comparator.reverseOrder());
-        System.out.println("reverse order sort=" + namesList);
+        System.out.printf("%s: reverse order sort=%s%n", Integer.toHexString(namesList.hashCode()), namesList);
     }
 }
