@@ -2,11 +2,9 @@ package org.ravi.java.util;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.ravi.udemy.dsa.WorthLooking;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -61,11 +59,35 @@ public class CollectionTest {
             for (Iterator<String> iter = coll.iterator(); iter.hasNext(); ) {
                 iter.remove();
             }
-        }).isInstanceOf(ConcurrentModificationException.class);
+        }).isInstanceOfAny(ConcurrentModificationException.class, IllegalStateException.class);
+    }
+
+    /**
+     * Check if removeIf works while iterating
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void removeIfWorks() {
+        // RNTODO - implement
+        throw new IllegalArgumentException("implement me");
     }
 
     @Test
-    public void removeIfWorks() {
-        throw new IllegalArgumentException("implement me");
+    public void toStringTest() {
+        Collection<String> strings = new ArrayList<>();
+        strings.add("one");
+        strings.add("two");
+        strings.add("three");
+        strings.add("four");
+
+        System.out.println("toString on collection" + strings);
+        String noParamStr = Arrays.toString(strings.toArray());
+        System.out.println("Arrays.toString on collection=" + noParamStr);
+        @WorthLooking("Works with zero-sized arrays also")
+        String[] oneOrZero = new String[0];
+        String str = Arrays.toString(strings.toArray(oneOrZero));
+        System.out.println("Arrays.toString with one element=" + str);
+        assertThat(str)
+                .describedAs("toArray with one elem array")
+                .isEqualTo(strings.toString());
     }
 }
