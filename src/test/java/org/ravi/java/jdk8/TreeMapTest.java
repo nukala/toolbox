@@ -6,9 +6,10 @@ import org.ravi.udemy.dsa.WorthLooking;
 import java.util.TreeMap;
 
 public class TreeMapTest {
+    // figure out a consumer to parameterize this code and add asserts! - RNTODO
     @Test
     public void treeMapHigherVsCeilingKey() {
-        TreeMap<Integer, String> map = new TreeMap<Integer, String>();
+        TreeMap<Integer, String> map = new TreeMap<>();
 
         map.put(0, "zero");
         map.put(20, "twenty");

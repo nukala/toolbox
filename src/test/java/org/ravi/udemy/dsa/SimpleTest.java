@@ -27,7 +27,7 @@ public class SimpleTest {
                 .as("unsorted intial input")
                 .containsExactly(2, 65, 34, 2, 1, 7, 8);
         Collections.sort(list);
-        System.out.printf("After sorting=%s %n", list.toString());
+        System.out.printf("After sorting=%s %n", list);
         assertThat(list)
                 .as("after sorting")
                 .containsExactly(1, 2, 2, 7, 8, 34, 65);

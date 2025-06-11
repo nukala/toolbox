@@ -1,11 +1,10 @@
 package org.ravi.java.jdk8;
 
 import org.junit.Test;
-import org.ravi.udemy.dsa.WorthLooking;
 
 import java.util.Arrays;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Simple test to show that arrays are passed as reference (mutable inside a method)
@@ -33,7 +32,8 @@ public class ArrayTest {
         System.out.printf("BEFORE = %s %n", Arrays.toString(ary));
         clear_Array(ary);
         System.out.printf("AFTER = %s %n", Arrays.toString(ary));
-        assertThat(ary).containsExactly(0, 4, 0, 6).describedAs("alternate zeroes");
+        assertThat(ary).describedAs("alternate zeroes")
+                .containsExactly(0, 4, 0, 6);
     }
 
     @Test
@@ -42,7 +42,22 @@ public class ArrayTest {
         System.out.printf("BEFORE = %s %n", Arrays.toString(ary));
         clear_Array(ary, "-");
         System.out.printf("AFTER = %s %n", Arrays.toString(ary));
-        assertThat(ary).containsExactly("-", "from", "-", "CA", "-")
-                .describedAs("alternate dashes");
+        assertThat(ary).describedAs("alternate dashes")
+                .containsExactly("-", "from", "-", "CA", "-");
+    }
+
+
+    @Test
+    public void arrayCopyDemo_byObservation() {
+        String[] copyFrom = {"Affogato", "Americano", "Cappuccino", "Corretto", "Cortado", "Doppio", "Espresso", "Frappucino", "Freddo", "Lungo", "Macchiato", "Marocchino", "Ristretto"};
+
+        // @WorthLooking - Cappuccino to Freddo, no Lungo!, not arrayCopy
+        String[] copyTo = java.util.Arrays.copyOfRange(copyFrom, 2, 9);
+        for (String coffee : copyTo) {
+            System.out.print(coffee + " ");
+        }
+        System.out.println();
+        // without looping explicitly ...
+        System.out.println(java.util.Arrays.toString(copyTo));
     }
 }
