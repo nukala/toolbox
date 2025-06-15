@@ -1,15 +1,18 @@
 package org.ravi.udemy.jdk8.dates;
 
+import org.joda.time.Hours;
+import org.joda.time.Minutes;
 import org.ravi.udemy.dsa.WorthLooking;
 
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
 // lab96 and 97
 public class ZonedDateTimeExample {
-    private static Map<String, ZoneId> map = new HashMap<>() {{
+    private static final Map<String, ZoneId> map = new HashMap<>() {{
         put("New_York", ZoneId.of("America/New_York"));
         put("Chicago", ZoneId.of("America/Chicago"));
         put("Denver ", ZoneId.of("America/Denver"));
@@ -56,9 +59,7 @@ public class ZonedDateTimeExample {
 //        System.out.println("num zoneids=" + ZoneId.getAvailableZoneIds().size());
 
 
-        ofZones((z) -> {
-            return ZonedDateTime.now(z).toString();
-        });
+        ofZones(z -> ZonedDateTime.now(z).toString());
 
         System.out.println("===");
         System.out.println("zdt using clock with zoneId="
@@ -83,14 +84,53 @@ public class ZonedDateTimeExample {
         OffsetDateTime offsetDateTime = localDateTime.atOffset(ZoneOffset.ofHours(-4));
         System.out.println("offsetDateTime still in PxT (-4=NYC)=" + offsetDateTime);
 
-        System.out.println("==== converted to other TZs === ");
+        LocalDateTime ldt = LocalDateTime.of(2025, 6, 11, 14, 22, 33);
+        Instant ldtInst = ldt.atZone(ZoneId.systemDefault()).toInstant();
+        System.out.println("==== converted(" + ldt + ") to other TZs === ");
         @WorthLooking("convert to different timezone")
-        Function<ZoneId, String> convertToTz = (z) -> {
-            LocalDateTime ldt = LocalDateTime.now();
-            Instant inst = ldt.atZone(ZoneId.systemDefault()).toInstant();
-            return inst.atZone(z).toLocalDateTime().toString();
-        };
+        Function<ZoneId, String> convertToTz = (z) -> ldtInst.atZone(z).toLocalDateTime().toString();
         ofZones(convertToTz);
         System.out.println("==");
+
+        travelExample(Hours.hours(10), Minutes.minutes(55));
+    }
+
+    static void travelExample(Hours hrs, Minutes mins) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM d yyyy  hh:mm a");
+
+// Leaving from San Francisco on July 20, 2013, at 7:30 p.m.
+        LocalDateTime leaving = LocalDateTime.now();
+        ZoneId leavingZone = ZoneId.of("America/Los_Angeles");
+        ZonedDateTime departure = ZonedDateTime.of(leaving, leavingZone);
+
+        try {
+            String out1 = departure.format(format);
+            System.out.printf("LEAVING:  %s (%s)%n", out1, leavingZone);
+        } catch (DateTimeException exc) {
+            System.out.printf("%s can't be formatted!%n", departure);
+            throw exc;
+        }
+
+
+        ZoneId arrivingZone = ZoneId.of("Asia/Tokyo");
+        ZonedDateTime arrival = departure.withZoneSameInstant(arrivingZone)
+                .plusHours(hrs.getHours())
+                .plusMinutes(mins.getMinutes());
+
+        try {
+            String out2 = arrival.format(format);
+            System.out.printf("ARRIVING: %s (%s)%n", out2, arrivingZone);
+        } catch (DateTimeException exc) {
+            System.out.printf("%s can't be formatted!%n", arrival);
+            throw exc;
+        }
+
+        if (arrivingZone.getRules().isDaylightSavings(arrival.toInstant())){
+            System.out.printf("  (%s daylight saving time will be in effect.)%n",
+                    arrivingZone);
+        } else{
+            System.out.printf("  (%s standard time will be in effect.)%n",
+                    arrivingZone);
+        }
     }
 }
