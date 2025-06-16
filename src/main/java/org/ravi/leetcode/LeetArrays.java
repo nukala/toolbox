@@ -31,7 +31,12 @@ public class LeetArrays {
 
         int len = array.length, numSwaps = 0;
         for (int left = 0, right = len - 1;
+<<<<<<< HEAD
 	     left <= right; left++, right--) {
+=======
+             left <= right;
+             left++, right--) {
+>>>>>>> 6f4f555 (ArrayTest - prove that arrays are passed as reference. Called func can change values)
             int tmp = array[left];
             array[left] = array[right];
             array[right] = tmp;
