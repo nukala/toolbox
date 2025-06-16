@@ -37,13 +37,12 @@ public class LeetProblems {
 	// as a stack!
         Deque<Character> deque = new ArrayDeque<>();
         for (char ch : s.toCharArray()) {
-            StringBuilder sb = new StringBuilder();
             if ((ch == ')') || (ch == ']') || (ch == '}')) {
                 if (deque.isEmpty()) {
                     // initial close is not valid
                     return false;
                 }
-                Character popped = deque.pop();
+                Character popped = deque.pop(); // removeFirst
                 if ((ch == ')') && (popped.equals('('))) {
                     continue;
                 } else if ((ch == ']') && (popped.equals('['))) {
@@ -53,7 +52,7 @@ public class LeetProblems {
                 }
                 return false;
             } else {
-                deque.push(ch);
+                deque.push(ch); // addFirst
             }
         }
 

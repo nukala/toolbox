@@ -149,6 +149,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -159,6 +160,13 @@
         <dropwizard.version>4.0.2</dropwizard.version>
         <jmh.version>1.21</jmh.version>
         <mybatis.generator.version>1.3.2</mybatis.generator.version>
+        <!-- may not be needed after maven->sync manually
+        <java.version>24</java.version>
+        <maven.compiler.source>24</maven.compiler.source>
+        <maven.compiler.target>24</maven.compiler.target>
+        <lombok.version>1.18.38</lombok.version>
+        <compilerplugin.version>3.14.0</compilerplugin.version>
+        -->
     </properties>
 
 </project>

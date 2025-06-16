@@ -12,7 +12,7 @@ public class ConsumerExample {
 
     public static void printStudents() {
         @WorthLooking("forEach takes a consumer, need special work for biconsumer")
-        Consumer<Student> c2 = (student) -> System.out.println(student);
+        Consumer<Student> c2 = student -> System.out.printf("c2=%s%n", student);
         getAllStudents()
                 .forEach(c2);
     }

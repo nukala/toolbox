@@ -31,11 +31,13 @@ public class StreamsMapExample {
     public static void main(String[] args) {
         StreamsMapExample sme = new StreamsMapExample();
         System.out.println(strSoutFunc.apply(sme.namesList()));
-        System.out.println("===");
+        System.out.println("===\n");
         System.out.println(strSoutFunc.apply(sme.namesSet()));
+        System.out.println("===\n");
     }
 
     public Set<String> namesSet() {
+        System.out.println("=== uppercase set via stream+map");
         return students.stream() // Stream<Student>
                 .map(Student::getName)// Stream<String>
                 .map(String::toUpperCase) // Stream<String>
@@ -43,12 +45,11 @@ public class StreamsMapExample {
     }
 
     public List<String> namesList() {
+        //@WorthLooking("can use a real Function")
+        System.out.println("=== lowercase list via parallel steam+map!");
         return students.stream().parallel()
                 .map(Student::getName)
-                .map((str) -> {
-                    //@WorthLooking("can use a real Function")
-                    return str.toLowerCase();
-                }) // Stream<String>
+                .map(String::toLowerCase) // Stream<String>
                 .collect(toList());
     }
 }

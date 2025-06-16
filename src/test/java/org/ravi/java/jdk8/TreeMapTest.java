@@ -49,5 +49,8 @@ public class TreeMapTest {
         System.out.printf("Lower: less_than (definitely below) for %d is [%s]%n", key, map.lowerEntry(key));
         key = 62;
         System.out.printf("Lower: less_than (definitely below) for %d is [%s]%n", key, map.lowerEntry(key));
+
+        System.out.printf("O(1)-tailMap_onlyGreater(%d) = [%s]%n==%n", key, map.tailMap(key, false));
+        System.out.printf("O(1)-headMap_lessThanEqual(%d) = [%s]%n==%n", key, map.headMap(key, true));
     }
 }
