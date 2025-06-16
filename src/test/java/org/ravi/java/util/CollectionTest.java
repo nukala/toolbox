@@ -82,10 +82,11 @@ public class CollectionTest {
         System.out.println("toString on collection" + strings);
         String noParamStr = Arrays.toString(strings.toArray());
         System.out.println("Arrays.toString on collection=" + noParamStr);
+        int len = 0;
         @WorthLooking("Works with zero-sized arrays also")
-        String[] oneOrZero = new String[0];
+        String[] oneOrZero = new String[len];
         String str = Arrays.toString(strings.toArray(oneOrZero));
-        System.out.println("Arrays.toString with one element=" + str);
+        System.out.printf("Arrays.toString with one element(size=%d)=%s%n", len, str);
         assertThat(str)
                 .describedAs("toArray with one elem array")
                 .isEqualTo(strings.toString());

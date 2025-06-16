@@ -20,6 +20,7 @@ public class MapTest {
         map.put("four", null);
         map.put("five", "5");
 
+        System.out.printf("Map before printing anything[%s]%n", map);
         for (String value : map.values()) {
             System.out.println("value = " + value);
         }
