@@ -10,11 +10,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FizzBuzzTest {
-<<<<<<< HEAD
-    @WorthLooking("To help ease future changes")
-=======
-    //To help ease future changes
->>>>>>> 6f4f555 (ArrayTest - prove that arrays are passed as reference. Called func can change values)
     private static final HashMap<Integer, String> divisorsMap = new HashMap<Integer, String>() {
         {
             put(3, "Fizz");
@@ -26,8 +21,7 @@ public class FizzBuzzTest {
     };
 
     public static String fizzBuzz(int i) {
-        StringBuilder sb = new StringBuilder();
-
+        StringBuilder sb = new StringBuilder(17);
         @WorthLooking("check out usage of stream -> toList collector")
         List<Integer> divisors = divisorsMap.keySet().stream().toList();
         for (int d : divisors) {

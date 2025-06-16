@@ -41,25 +41,11 @@ public class CompareToTest {
     public void ascendingTest() {
         List<Integer> nums = Arrays.asList(44, 99, 33, 12, 17, 44);
         @WorthLooking("o1-o2 is ascending, o2-o1 is descending")
-<<<<<<< HEAD
-        // TODO: use compareTo instead of subtraction so params can be non-integers
-=======
-        // RNTODO: use compareTo instead of subtraction so params can be non-integers
->>>>>>> 6f4f555 (ArrayTest - prove that arrays are passed as reference. Called func can change values)
         BiFunction<Integer, Integer, Integer> asc = (o1, o2) -> o1 - o2;
         BiFunction<Integer, Integer, Integer> desc = (o1, o2) -> o2 - o1;
 
         AtomicReference<BiFunction<Integer, Integer, Integer>> funcHolder = new AtomicReference<>(asc);
-<<<<<<< HEAD
-        Comparator<Integer> comparator = new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return funcHolder.get().apply(o1, o2);
-            }
-        };
-=======
         Comparator<Integer> comparator = (o1, o2) -> funcHolder.get().apply(o1, o2);
->>>>>>> 6f4f555 (ArrayTest - prove that arrays are passed as reference. Called func can change values)
 
         List<Integer> sorted = nums.stream()
                 .sorted(comparator)
@@ -109,20 +95,13 @@ public class CompareToTest {
         assertThat(complst.get(2).name).isEqualTo("onek");
         assertThat(complst.get(3).name).isEqualTo("oscnd");
 
-<<<<<<< HEAD
-=======
         System.out.printf("numNames before storting %s%n", numNames);
->>>>>>> 6f4f555 (ArrayTest - prove that arrays are passed as reference. Called func can change values)
         @WorthLooking("thenComparing sorts after first comparison")
         List<NumName> thnCmp = numNames.stream()
                 .sorted(Comparator.comparing(NumName::num)
                         .thenComparing(NumName::name))
                 .toList();
-<<<<<<< HEAD
-        System.out.println("thenComparing = " + thnCmp);
-=======
         System.out.printf("after num->name thenComparing %s %n", thnCmp);
->>>>>>> 6f4f555 (ArrayTest - prove that arrays are passed as reference. Called func can change values)
         assertThat(thnCmp.get(0).num).isEqualTo(800);
         assertThat(thnCmp.get(1).name).isEqualTo("oabs");
         assertThat(thnCmp.get(2).name).isEqualTo("onek");

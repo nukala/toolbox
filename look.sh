@@ -8,7 +8,7 @@ then
   echo -e "\n\n===\n"
 fi
 
-echo -e "For interesting OR confusing stuff ... dig deep"
+echo -e "\n\n===\n${prog} For interesting OR confusing stuff ... dig deep"
 echo "      jdk8 brings 48 entries "
 
 echo 'vi $(rg -lN -g '\''**.java'\'' -g '\''!**/jdk8/**'\'' \@WorthLooking) '
