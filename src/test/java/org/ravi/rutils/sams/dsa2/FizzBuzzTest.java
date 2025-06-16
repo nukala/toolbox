@@ -1,6 +1,5 @@
 package org.ravi.rutils.sams.dsa2;
 
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.ravi.udemy.dsa.WorthLooking;
 
@@ -10,7 +9,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class FizzBuzzTest {
-    private static final HashMap<Integer, String> divisorsMap = new HashMap<Integer, String>() {
+    private static final HashMap<Integer, String> divisorsMap = new HashMap<>() {
         {
             put(3, "Fizz");
             put(5, "Buzz");
